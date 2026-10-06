@@ -1256,14 +1256,24 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=language_keyboard(),
     )
 
-
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
 
     await query.answer()
+
     data = query.data
     lang = context.user_data.get("language", "en")
-               
+
+    if data.startswith("lang_"):
+        new_lang = data.replace("lang_", "")
+        context.user_data["language"] = new_lang
+
+        await query.edit_message_text(
+            TEXT[new_lang]["welcome"],
+            reply_markup=main_keyboard(new_lang),
+        )
+        return
+
     if data.startswith("mountain_"):
         mountain_id = data.replace("mountain_", "")
         mountain = MOUNTAINS[mountain_id][lang]
