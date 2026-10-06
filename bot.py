@@ -1262,7 +1262,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await query.answer()
 
-      if data.startswith("mountain_"):
+    if data.startswith("mountain_"):
         mountain_id = data.replace("mountain_", "")
         mountain = MOUNTAINS[mountain_id][lang]
 
@@ -1277,6 +1277,35 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                 "📍 Google Maps",
                                 url=mountain["map"]
                             )
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                TEXT[lang]["back"],
+                                callback_data="mountains"
+                            )
+                        ],
+                    ]),
+                )
+        else:
+            await query.edit_message_text(
+                mountain["text"],
+                reply_markup=InlineKeyboardMarkup([
+                    [
+                        InlineKeyboardButton(
+                            "📍 Google Maps",
+                            url=mountain["map"]
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            TEXT[lang]["back"],
+                            callback_data="mountains"
+                        )
+                    ],
+                ]),
+            )
+
+        return
                         ],
                         [
                             InlineKeyboardButton(
