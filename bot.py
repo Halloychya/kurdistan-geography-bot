@@ -1347,7 +1347,48 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=city_keyboard(city_id, lang),
         )
         return
+    if data == "facts":
+        keyboard = []
 
+        for fact_id, fact in FACTS.items():
+            keyboard.append([
+                InlineKeyboardButton(
+                    fact[lang]["title"],
+                    callback_data=f"fact_{fact_id}"
+                )
+            ])
+
+        keyboard.append([
+            InlineKeyboardButton(
+                TEXT[lang]["back"],
+                callback_data="back_main"
+            )
+        ])
+
+        await query.edit_message_text(
+            "📚 Choose a geography fact:"
+            if lang == "en"
+            else "📚 زانیارییەکی جوگرافی هەڵبژێرە:",
+            reply_markup=InlineKeyboardMarkup(keyboard),
+        )
+        return
+
+    if data.startswith("fact_"):
+        fact_id = data.replace("fact_", "")
+        fact = FACTS[fact_id][lang]
+
+        await query.edit_message_text(
+            f"{fact['title']}\n\n{fact['text']}",
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton(
+                        TEXT[lang]["back"],
+                        callback_data="facts"
+                    )
+                ]
+            ]),
+        )
+        return
     if data == "back_main":
         await query.edit_message_text(
             TEXT[lang]["welcome"],
