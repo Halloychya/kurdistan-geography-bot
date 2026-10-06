@@ -1280,49 +1280,12 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=mountains_keyboard(lang),
         )
         return
-    if data.startswith("mountain_"):
+        if data.startswith("mountain_"):
         mountain_id = data.replace("mountain_", "")
-        mountain = MOUNTAINS[mountain_id][lang]
 
-        if "photo" in mountain:
-            with open(mountain["photo"], "rb") as photo:
-                await query.message.reply_photo(
-                    photo=photo,
-                    caption=mountain["text"],
-                    reply_markup=InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton(
-                                "📍 Google Maps",
-                                url=mountain["map"]
-                            )
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                TEXT[lang]["back"],
-                                callback_data="mountains"
-                            )
-                        ]
-                    ])
-                )
-        else:
-            await query.edit_message_text(
-                mountain["text"],
-                reply_markup=InlineKeyboardMarkup([
-                    [
-                        InlineKeyboardButton(
-                            "📍 Google Maps",
-                            url=mountain["map"]
-                        )
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            TEXT[lang]["back"],
-                            callback_data="mountains"
-                        )
-                    ]
-                ])
-            )
-
+        await query.edit_message_text(
+            f"Mountain clicked: {mountain_id}"
+        )
         return
 
     if data == "rivers":
