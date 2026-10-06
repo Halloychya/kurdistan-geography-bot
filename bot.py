@@ -848,7 +848,206 @@ CITIES = {
     },
 }
 
+FACTS = {
+    "mountain_belt": {
+        "en": {
+            "title": "🏔️ The Taurus–Zagros Mountain Belt",
+            "text": (
+                "The mountains of Kurdistan form part of the huge "
+                "Taurus–Zagros mountain system. This mountain belt was "
+                "created by the collision of the Arabian and Eurasian "
+                "tectonic plates."
+            ),
+        },
+        "ku": {
+            "title": "🏔️ زنجیرە شاخەکانی تاورۆس–زاگرۆس",
+            "text": (
+                "شاخەکانی کوردستان بەشێکن لە سیستەمی گەورەی "
+                "شاخەکانی تاورۆس–زاگرۆس. ئەم شاخانە بەهۆی "
+                "پێکدادانی پلێتەکانی عەرەبی و ئەورو-ئاسیایی دروست بوون."
+            ),
+        },
+    },
 
+    "water_source": {
+        "en": {
+            "title": "💧 Kurdistan: A Water Source for Mesopotamia",
+            "text": (
+                "Snow and rainfall in the Kurdistan highlands feed major "
+                "rivers such as the Tigris, Great Zab and Little Zab, "
+                "providing water for the plains of Mesopotamia."
+            ),
+        },
+        "ku": {
+            "title": "💧 کوردستان: سەرچاوەی ئاوه‌ بۆ میسۆپۆتامیا",
+            "text": (
+                "بەفر و بارانەکانی ناوچە شاخاوییەکانی کوردستان "
+                "سەرچاوەی ئاوی ڕووبارە گەورەکانن وەک دیجلە، زێی گەورە "
+                "و زێی بچووک، کە ئاو بۆ دشتەکانی میسۆپۆتامیا دابین دەکەن."
+            ),
+        },
+    },
+
+    "elevation": {
+        "en": {
+            "title": "🏞️ Huge Changes in Elevation",
+            "text": (
+                "Kurdistan contains both low plains and mountains rising "
+                "thousands of metres. This creates major differences in "
+                "climate, vegetation and agriculture within relatively "
+                "short distances."
+            ),
+        },
+        "ku": {
+            "title": "🏞️ جیاوازی زۆری بەرزی",
+            "text": (
+               " کوردستان پێكهاتووه‌ له‌ ده‌شتە نزمەکان و شاخە بەرزەکانی "
+                "هەزاران مەتر لەخۆدەگرێت. ئەمەش جیاوازی گەورە لە "
+                "کەشوهەوا، ڕووەک و کشتوکاڵ دروست دەکات."
+            ),
+        },
+    },
+
+    "ancient_glaciers": {
+        "en": {
+            "title": "🧊 Ancient Glaciers",
+            "text": (
+                "During past ice ages, glaciers affected some of the "
+                "highest mountains of Kurdistan. Ancient ice helped shape "
+                "some of the valleys and mountain landscapes we see today."
+            ),
+        },
+        "ku": {
+            "title": "🧊 بەستەڵەکی کۆن",
+            "text": (
+                "لە سەردەمە ساردەکانی ڕابردوودا، بەستەڵەک کاریگەری "
+                "لەسەر هەندێک لە شاخە بەرزەکانی کوردستان هەبووە. "
+                "ئەو بەستەڵەکە کۆنانە بەشێک لە دۆڵ و دیمەنی شاخەکانی "
+                "ئەمڕۆیان دروست کردووە."
+            ),
+        },
+    },
+
+    "lake_van": {
+        "en": {
+            "title": "🌊 Lake Van Is an Alkaline Lake",
+            "text": (
+                "Lake Van is one of the world's largest alkaline lakes. "
+                "Its water contains a high concentration of carbonate "
+                "and is very different from ordinary freshwater lakes."
+            ),
+        },
+        "ku": {
+            "title": "🌊 دەریاچەی وان ئاوی كبریتی هەیە",
+            "text": (
+                "دەریاچەی وان یەکێکە لە گەورەترین دەریاچە كبریتیه‌كانی "
+                "جیهان. ئاوی ئەم دەریاچەیە ڕێژەیەکی بەرزی کاربۆناتی "
+                "هەیە و لە ئاوی دەریاچە ئاساییە شیرینەکان جیاوازە."
+            ),
+        },
+    },
+
+    "volcanoes": {
+        "en": {
+            "title": "🌋 Volcanic Mountains",
+            "text": (
+                "The wider Kurdish highlands around Lake Van contain "
+                "important volcanic landscapes, including Mount Süphan "
+                "and Mount Nemrut."
+            ),
+        },
+        "ku": {
+            "title": "🌋 شاخە ئاگرکانییەکان",
+            "text": (
+                "ناوچە شاخاوییەکانی دەوری دەریاچەی وان دیمەنی "
+                "گركانی گرنگی تێدایە، لەوانە شاخی سوفان و شاخی نەمرود."
+            ),
+        },
+    },
+
+    "halgurd_rocks": {
+        "en": {
+            "title": "🪨 Strange Rocks on Halgurd",
+            "text": (
+                "Geological studies around Halgurd have identified unusual "
+                "rocks, including pillow basalts. These rocks help scientists "
+                "understand the complicated geological history of the Zagros."
+            ),
+        },
+        "ku": {
+            "title": "🪨 بەردە سەیرەکانی هەڵگورد",
+            "text": (
+                "توێژینەوە جیۆلۆجییەکان لە دەوری هەڵگورد بەردی "
+                "نامۆیان دۆزیوەتەوە، لەوانە pillow basalt. ئەم بەردانە "
+                "یارمەتی زاناکان دەدەن بۆ تێگەیشتن لە مێژووی جیۆلۆجی "
+                "ئاڵۆزی زاگرۆس."
+            ),
+        },
+    },
+
+    "zagros_length": {
+        "en": {
+            "title": "🏔️ The Zagros Is Enormous",
+            "text": (
+                "The Zagros mountain system stretches for roughly "
+                "1,500–1,600 kilometres, forming one of the great mountain "
+                "belts of the Middle East."
+            ),
+        },
+        "ku": {
+            "title": "🏔️ زاگرۆس زۆر گەورەیە",
+            "text": (
+                "سیستەمی شاخەکانی زاگرۆس نزیکەی ١٥٠٠–١٦٠٠ کیلۆمەتر "
+                "درێژ دەبێتەوە و یەکێکە لە گەورەترین زنجیرە شاخەکانی "
+                "ڕۆژهەڵاتی ناوەڕاست."
+            ),
+        },
+    },
+
+    "ancient_ocean": {
+        "en": {
+            "title": "🌊 Rocks That Remember an Ancient Ocean",
+            "text": (
+                "Some rocks in the Zagros are connected to ancient oceanic "
+                "environments that existed millions of years ago. Their "
+                "presence gives geologists clues about the ancient oceans "
+                "that disappeared as the Arabian and Eurasian plates collided."
+            ),
+        },
+        "ku": {
+            "title": "🌊 بەردی بیرەوەری و دەریای کۆن",
+            "text": (
+                "هەندێک بەرد لە زاگرۆس پەیوەندییان بە ژینگە "
+                "دەریاییە کۆنەکانەوە هەیە کە ملیۆنان ساڵ لەمەوبەر "
+                "بوونیان هەبووە. ئەم بەردانە نیشانەیەکن بۆ زاناکان "
+                "بۆ ناسینەوەی دەریایی کۆن کە لە کاتی پێکدادانی "
+                "پلێتە عەرەبی و ئەورو-ئاسیاییەکاندا لەناوچوون."
+            ),
+        },
+    },
+
+    "early_farming": {
+        "en": {
+            "title": "🌾 One of the Birthplaces of Farming",
+            "text": (
+                "The Zagros and surrounding Fertile Crescent contain "
+                "archaeological evidence of very early plant cultivation "
+                "and animal domestication. The region played an important "
+                "role in humanity's transition toward farming communities."
+            ),
+        },
+        "ku": {
+            "title": "🌾 یەکێک لە شوێنە سەرەتاییەکانی کشتوکاڵ",
+            "text": (
+                "لە زاگرۆس و ناوچەکانی دەوری هەلالی پڕبەرەکەت، "
+                "بەڵگەی شوێنەواری بۆ چاندنی ڕووەک و ماڵیکردنی ئاژەڵ "
+                "لە سەردەمە زۆر کۆنەکاندا دۆزراوەتەوە. ئەم ناوچەیە "
+                "ڕۆڵێکی گرنگی هەبووە لە گواستنەوەی مرۆڤ بۆ ژیانی "
+                "کشتوکاڵی."
+            ),
+        },
+    },
+}
 def language_keyboard():
     return InlineKeyboardMarkup([
         [
