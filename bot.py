@@ -189,6 +189,470 @@ MOUNTAINS = {
         },
     },
 }
+RIVERS = {
+    "tigris": {
+        "en": {
+            "name": "🌊 Tigris (Dîcle)",
+            "text": (
+                "🌊 Tigris River (Dîcle)\n\n"
+                "The Tigris is one of the great rivers of Mesopotamia "
+                "and one of the most important rivers of Iraq.\n\n"
+                "📍 Known for: ancient civilizations, agriculture, "
+                "water resources, and major cities along its course."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Tigris+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 دیجلە (Dîcle)",
+            "text": (
+                "🌊 ڕووباری دیجلە\n\n"
+                "دیجلە یەکێکە لە ڕووبارە گەورەکانی مەیسۆپۆتامیا "
+                "و یەکێکە لە گرنگترین ڕووبارەکانی عێراق.\n\n"
+                "📍 بەناوبانگە بە: شارستانییە کۆنەکان، کشتوکاڵ، "
+                "سەرچاوەکانی ئاو و شارە گرنگەکان."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Tigris+River+Iraq",
+        },
+    },
+
+    "euphrates": {
+        "en": {
+            "name": "🌊 Euphrates (Firat)",
+            "text": (
+                "🌊 Euphrates River (Firat)\n\n"
+                "The Euphrates is one of the two great rivers "
+                "of ancient Mesopotamia.\n\n"
+                "📍 Known for: ancient civilizations, agriculture, "
+                "and its importance to the history of the region."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Euphrates+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 فورات (Firat)",
+            "text": (
+                "🌊 ڕووباری فورات\n\n"
+                "فورات یەکێکە لە دوو ڕووبارە گەورەکانی "
+                "مەیسۆپۆتامیا و گرنگییەکی مێژوویی زۆری هەیە.\n\n"
+                "📍 بەناوبانگە بە: شارستانییە کۆنەکان، "
+                "کشتوکاڵ و مێژووی ناوچەکە."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Euphrates+River+Iraq",
+        },
+    },
+
+    "great_zab": {
+        "en": {
+            "name": "🌊 Great Zab (Zêyê Mezin)",
+            "text": (
+                "🌊 Great Zab River\n\n"
+                "The Great Zab is one of the major tributaries "
+                "of the Tigris River.\n\n"
+                "📍 Known for: mountain valleys, water resources, "
+                "and beautiful landscapes."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Great+Zab+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 زێی گەورە (Zêyê Mezin)",
+            "text": (
+                "🌊 ڕووباری زێی گەورە\n\n"
+                "زێی گەورە یەکێکە لە لقە گرنگەکانی "
+                "ڕووباری دیجلە.\n\n"
+                "📍 بەناوبانگە بە: دۆڵە شاخاوییەکان، "
+                "سەرچاوەکانی ئاو و دیمەنی سروشتی."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Great+Zab+River+Iraq",
+        },
+    },
+
+    "little_zab": {
+        "en": {
+            "name": "🌊 Little Zab (Zêyê Biçûk)",
+            "text": (
+                "🌊 Little Zab River\n\n"
+                "The Little Zab is an important tributary "
+                "of the Tigris River.\n\n"
+                "📍 Known for: fertile valleys, agriculture, "
+                "and water resources."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Little+Zab+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 زێی بچووک (Zêyê Biçûk)",
+            "text": (
+                "🌊 ڕووباری زێی بچووک\n\n"
+                "زێی بچووک یەکێکە لە لقە گرنگەکانی "
+                "ڕووباری دیجلە.\n\n"
+                "📍 بەناوبانگە بە: دۆڵە بەرهەمدارەکان، "
+                "کشتوکاڵ و سەرچاوەکانی ئاو."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Little+Zab+River+Iraq",
+        },
+    },
+
+    "sirwan": {
+        "en": {
+            "name": "🌊 Sirwan (Diyala)",
+            "text": (
+                "🌊 Sirwan River\n\n"
+                "The Sirwan River, also known as the Darbandixan River "
+                "in Kurdistan, is an important river of the region.\n\n"
+                "📍 Known for: mountain valleys, reservoirs, "
+                "and natural scenery."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Sirwan+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 سیروان (Diyala)",
+            "text": (
+                "🌊 ڕووباری سیروان\n\n"
+                "سیروان، کە لە كوردستان بە ناوی ده‌ربه‌ندیخان ناسراوە، "
+                "ڕووبارێکی گرنگی ناوچەکەیە.\n\n"
+                "📍 بەناوبانگە بە: دۆڵە شاخاوییەکان، "
+                "بەنداوەکان و دیمەنی سروشتی."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Sirwan+River+Iraq",
+        },
+    },
+
+    "khabur": {
+        "en": {
+            "name": "🌊 Khabur (Little Khabur)",
+            "text": (
+                "🌊 Khabur River\n\n"
+                "The Little Khabur is a river associated with "
+                "the northern Mesopotamian river system.\n\n"
+                "📍 Known for: valleys, water resources, "
+                "and its connection to the regional river network."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Little+Khabur+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 خابور (Khabur)",
+            "text": (
+                "🌊 ڕووباری خابور\n\n"
+                "خابور ڕووبارێکە لە سیستەمی ڕووبارەکانی "
+                "باکووری مەیسۆپۆتامیا.\n\n"
+                "📍 بەناوبانگە بە: دۆڵەکان، سەرچاوەکانی ئاو "
+                "و پەیوەندی بە تۆڕی ڕووبارەکانی ناوچەکە."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Little+Khabur+River+Iraq",
+        },
+    },
+
+    "adhaim": {
+        "en": {
+            "name": "🌊 Adhaim (Awaspee)",
+            "text": (
+                "🌊 Adhaim River\n\n"
+                "The Adhaim is an important tributary "
+                "of the Tigris River.\n\n"
+                "📍 Known for: its role in the water system "
+                "of northern and central Iraq."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Adhaim+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 ئاوه‌سپی (Awaspee)",
+            "text": (
+                "🌊 ڕووباری ئاوه‌سپی\n\n"
+                "عەدهایم یەکێکە لە لقە گرنگەکانی "
+                "ڕووباری دیجلە.\n\n"
+                "📍 گرنگە بۆ سیستەمی ئاوی باکوور و ناوەڕاستی عێراق."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Adhaim+River+Iraq",
+        },
+    },
+
+    "khazir": {
+        "en": {
+            "name": "🌊 Khazir River",
+            "text": (
+                "🌊 Khazir River\n\n"
+                "The Khazir is an important river in the "
+                "Erbil–Nineveh region.\n\n"
+                "📍 Known for: fertile areas, water resources, "
+                "and its connection to the Great Zab system."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Khazir+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری خازر",
+            "text": (
+                "🌊 ڕووباری خازر\n\n"
+                "خازر ڕووبارێکی گرنگە لە ناوچەی "
+                "هەولێر و نینەوا.\n\n"
+                "📍 بەناوبانگە بە: ناوچە بەرهەمدارەکان، "
+                "سەرچاوەکانی ئاو و پەیوەنده‌ بە سیستەمی زێی گەورە."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Khazir+River+Iraq",
+        },
+    },
+
+    "tanjero": {
+        "en": {
+            "name": "🌊 Tanjero River",
+            "text": (
+                "🌊 Tanjero River\n\n"
+                "Tanjero is an important river around Sulaymaniyah "
+                "and is part of the regional river system.\n\n"
+                "📍 Known for: the valleys and landscapes around Sulaymaniyah."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Tanjero+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری تانجەڕۆ",
+            "text": (
+                "🌊 ڕووباری تانجەڕۆ\n\n"
+                "تانجەڕۆ ڕووبارێکی گرنگە لە دەوروبەری سلێمانی "
+                "و بەشێکە لە سیستەمی ئاوی ناوچەکە.\n\n"
+                "📍 بەناوبانگە بە: دۆڵ و دیمەنی سروشتی دەوروبەری سلێمانی."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Tanjero+River+Iraq",
+        },
+    },
+
+    "rwandz": {
+        "en": {
+            "name": "🌊 Rwandz River",
+            "text": (
+                "🌊 Rwandz River\n\n"
+                "The Rwandz River flows through the mountainous "
+                "Rawanduz area of Erbil Governorate.\n\n"
+                "📍 Known for: dramatic mountain valleys and "
+                "the natural scenery of Rawanduz."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Rawanduz+River+Iraq",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری ڕەواندز",
+            "text": (
+                "🌊 ڕووباری ڕەواندز\n\n"
+                "ڕووباری ڕەواندز لە ناوچە شاخاوییەکانی "
+                "ڕەواندز لە پارێزگای هەولێرە.\n\n"
+                "📍 بەناوبانگە بە: دۆڵە شاخاوییە سەرسوڕهێنەرەکان "
+                "و دیمەنی سروشتی ڕەواندز."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Rawanduz+River+Iraq",
+        },
+    },
+
+    "gali_ali_bag": {
+        "en": {
+            "name": "💧 Gali Ali Beg",
+            "text": (
+                "💧 Gali Ali Beg Waterfall\n\n"
+                "Gali Ali Beg is one of the famous waterfalls "
+                "in the Kurdistan Region, near Korek and Rawanduz.\n\n"
+                "📍 Known for: waterfalls, mountain scenery, "
+                "and tourism."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gali+Ali+Bag+Waterfall+Iraq",
+        },
+        "ku": {
+            "name": "💧 گەلی عەلی بەگ",
+            "text": (
+                "💧 ئاویشارەکەی گەلی عەلی بەگ\n\n"
+                "گەلی عەلی بەگ یەکێکە لە ئاویشارە بەناوبانگەکانی "
+                "هەرێمی کوردستان، لە نزیکی کۆڕەک و ڕەواندز.\n\n"
+                "📍 بەناوبانگە بە: ئاویشار، دیمەنی شاخستانی "
+                "و گەشتوگوزار."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gali+Ali+Bag+Waterfall+Iraq",
+        },
+    },
+
+    "shamdinan": {
+        "en": {
+            "name": "🌊 Shamdinan River",
+            "text": (
+                "🌊 Shamdinan River\n\n"
+                "The Shamdinan River is associated with the "
+                "mountainous areas of northern Kurdistan.\n\n"
+                "📍 Known for: mountain landscapes and valleys."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Shamdinan+River",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری شەمزینان",
+            "text": (
+                "🌊 ڕووباری شەمزینان\n\n"
+                "ڕووباری شەمزینان پەیوەندی بە ناوچە شاخاوییەکانی "
+                "باکووری کوردستانەوە هەیە.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی شاخستانی و دۆڵەکان."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Shamdinan+River",
+        },
+    },
+
+    "murat": {
+        "en": {
+            "name": "🌊 Murat River",
+            "text": (
+                "🌊 Murat River\n\n"
+                "The Murat is one of the important headwaters "
+                "of the Euphrates system in eastern Turkey.\n\n"
+                "📍 Known for: mountain landscapes and its role "
+                "in the Euphrates river system."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Murat+River+Turkey",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری مورات",
+            "text": (
+                "🌊 ڕووباری مورات\n\n"
+                "مورات یەکێکە لە سەرچاوە گرنگەکانی "
+                "سیستەمی ڕووباری فورات لە ڕۆژهەڵاتی تورکیا.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی شاخستانی و ڕۆڵی لە سیستەمی فورات."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Murat+River+Turkey",
+        },
+    },
+
+    "karasu": {
+        "en": {
+            "name": "🌊 Karasu River",
+            "text": (
+                "🌊 Karasu River\n\n"
+                "Karasu is an important headwater stream "
+                "of the Euphrates system.\n\n"
+                "📍 Known for: mountainous landscapes and "
+                "its connection to the Euphrates."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Karasu+River+Turkey",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری کاراسو",
+            "text": (
+                "🌊 ڕووباری کاراسو\n\n"
+                "کاراسو یەکێکە لە سەرچاوە گرنگەکانی "
+                "سیستەمی ڕووباری فوراتە.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی شاخستانی و پەیوەندی بە فورات."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Karasu+River+Turkey",
+        },
+    },
+
+    "botan": {
+        "en": {
+            "name": "🌊 Botan (Buhtân)",
+            "text": (
+                "🌊 Botan River\n\n"
+                "The Botan River is an important river in "
+                "the mountainous region of southeastern Turkey.\n\n"
+                "📍 Known for: deep valleys, mountains, "
+                "and dramatic landscapes."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Botan+River+Turkey",
+        },
+        "ku": {
+            "name": "🌊 بۆتان (Buhtân)",
+            "text": (
+                "🌊 ڕووباری بۆتان\n\n"
+                "بۆتان ڕووبارێکی گرنگە لە ناوچە شاخاوییەکانی "
+                "باشووری ڕۆژهەڵاتی تورکیا.\n\n"
+                "📍 بەناوبانگە بە: دۆڵە قووڵەکان، شاخەکان "
+                "و دیمەنی سەرسوڕهێنەر."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Botan+River+Turkey",
+        },
+    },
+
+    "aras": {
+        "en": {
+            "name": "🌊 Aras River",
+            "text": (
+                "🌊 Aras River\n\n"
+                "The Aras is a major river of the Caucasus "
+                "and forms parts of international borders.\n\n"
+                "📍 Known for: its long historical and "
+                "geographical importance in the region."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Aras+River",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری ئاراس",
+            "text": (
+                "🌊 ڕووباری ئاراس\n\n"
+                "ئاراس یەکێکە لە ڕووبارە گرنگەکانی ناوچەی "
+                "قەفقاز و بەشێک لە سنوورە نێودەوڵەتییەکان پێکدەهێنێت.\n\n"
+                "📍 بەناوبانگە بە: گرنگییە مێژوویی و جوگرافییەکەی."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Aras+River",
+        },
+    },
+
+    "zarrinarud": {
+        "en": {
+            "name": "🌊 Zarrinarud (Jaghatu)",
+            "text": (
+                "🌊 Zarrinarud River (Jaghatu)\n\n"
+                "Zarrinarud is an important river in northwestern Iran "
+                "and is connected to the Lake Urmia basin.\n\n"
+                "📍 Known for: agriculture and water resources."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Zarrinarud+River+Iran",
+        },
+        "ku": {
+            "name": "🌊 زەڕینەڕوود (Jaghatu)",
+            "text": (
+                "🌊 ڕووباری زەڕینەڕوود\n\n"
+                "زەڕینەڕوود ڕووبارێکی گرنگە لە باکووری ڕۆژئاوای "
+                "ئێران و پەیوەندی بە حەوزەی دەریاچەی ورمێ هەیە.\n\n"
+                "📍 بەناوبانگە بە: کشتوکاڵ و سەرچاوەکانی ئاو."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Zarrinarud+River+Iran",
+        },
+    },
+
+    "siminarud": {
+        "en": {
+            "name": "🌊 Siminarud (Tâtâ’u)",
+            "text": (
+                "🌊 Siminarud River\n\n"
+                "Siminarud is a river in northwestern Iran "
+                "associated with the Lake Urmia basin.\n\n"
+                "📍 Known for: valleys, agriculture, and water resources."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Siminarud+River+Iran",
+        },
+        "ku": {
+            "name": "🌊 سیمینەڕوود (Tâtâ’u)",
+            "text": (
+                "🌊 ڕووباری سیمینەڕوود\n\n"
+                "سیمینەڕوود ڕووبارێکە لە باکووری ڕۆژئاوای "
+                "ئێران و پەیوەندی بە حەوزەی دەریاچەی ورمێ هەیە.\n\n"
+                "📍 بەناوبانگە بە: دۆڵەکان، کشتوکاڵ و سەرچاوەکانی ئاو."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Siminarud+River+Iran",
+        },
+    },
+
+    "ghezel_ozan": {
+        "en": {
+            "name": "🌊 Ghezel Ozan River",
+            "text": (
+                "🌊 Ghezel Ozan River\n\n"
+                "Ghezel Ozan is a major river in northwestern Iran "
+                "and one of the important rivers of the region.\n\n"
+                "📍 Known for: large valleys, agriculture, "
+                "and water resources."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Ghezel+Ozan+River+Iran",
+        },
+        "ku": {
+            "name": "🌊 ڕووباری غەزەل ئۆزەن",
+            "text": (
+                "🌊 ڕووباری غەزەل ئۆزەن\n\n"
+                "غەزەل ئۆزەن ڕووبارێکی گەورەی باکووری ڕۆژئاوای "
+                "ئێرانە و لە ڕووبارە گرنگەکانی ناوچەکەیە.\n\n"
+                "📍 بەناوبانگە بە: دۆڵە گەورەکان، کشتوکاڵ "
+                "و سەرچاوەکانی ئاو."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Ghezel+Ozan+River+Iran",
+        },
+    },
+}
 CITIES = {
     "erbil": {
         "en": {
@@ -413,7 +877,70 @@ def main_keyboard(lang):
             InlineKeyboardButton(t["language"], callback_data="language"),
         ],
     ])
+def rivers_keyboard(lang):
+    rivers = {
+        "en": [
+            ("🌊 Tigris (Dîcle)", "tigris"),
+            ("🌊 Euphrates (Firat)", "euphrates"),
+            ("🌊 Great Zab (Zêyê Mezin)", "great_zab"),
+            ("🌊 Little Zab (Zêyê Biçûk)", "little_zab"),
+            ("🌊 Sirwan (Diyala)", "sirwan"),
+            ("🌊 Khabur", "khabur"),
+            ("🌊 Adhaim (Awaspee)", "adhaim"),
+            ("🌊 Khazir", "khazir"),
+            ("🌊 Tanjero", "tanjero"),
+            ("🌊 Rwandz", "rwandz"),
+            ("💧 Gali Ali Beg", "gali_ali_bag"),
+            ("🌊 Shamdinan", "shamdinan"),
+            ("🌊 Murat", "murat"),
+            ("🌊 Karasu", "karasu"),
+            ("🌊 Botan (Buhtân)", "botan"),
+            ("🌊 Aras", "aras"),
+            ("🌊 Zarrinarud (Jaghatu)", "zarrinarud"),
+            ("🌊 Siminarud (Tâtâ’u)", "siminarud"),
+            ("🌊 Ghezel Ozan", "ghezel_ozan"),
+        ],
+        "ku": [
+            ("🌊 دیجلە (Dîcle)", "tigris"),
+            ("🌊 فورات (Firat)", "euphrates"),
+            ("🌊 زێی گەورە", "great_zab"),
+            ("🌊 زێی بچووک", "little_zab"),
+            ("🌊 سیروان (Darbandixan)", "sirwan"),
+            ("🌊 خابور", "khabur"),
+            ("🌊 ئاوه‌سپی", "Awaspi"),
+            ("🌊 خازر", "khazir"),
+            ("🌊 تانجەڕۆ", "tanjero"),
+            ("🌊 ڕووباری ڕەواندز", "rwandz"),
+            ("💧 گەلی عەلی بەگ", "gali_ali_bag"),
+            ("🌊 شەمزینان", "shamdinan"),
+            ("🌊 مورات", "murat"),
+            ("🌊 کاراسو", "karasu"),
+            ("🌊 بۆتان", "botan"),
+            ("🌊 ئاراس", "aras"),
+            ("🌊 زەڕینەڕوود", "zarrinarud"),
+            ("🌊 سیمینەڕوود", "siminarud"),
+            ("🌊 غەزەل ئۆزەن", "ghezel_ozan"),
+        ],
+    }
 
+    buttons = []
+
+    for name, river_id in rivers[lang]:
+        buttons.append([
+            InlineKeyboardButton(
+                name,
+                callback_data=f"river_{river_id}"
+            )
+        ])
+
+    buttons.append([
+        InlineKeyboardButton(
+            TEXT[lang]["back"],
+            callback_data="back_main"
+        )
+    ])
+
+    return InlineKeyboardMarkup(buttons)
 def mountains_keyboard(lang):
     mountains = {
         "en": [
@@ -567,6 +1094,37 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     InlineKeyboardButton(
                         TEXT[lang]["back"],
                         callback_data="mountains"
+                    )
+                ],
+            ]),
+        )
+        return
+            if data == "rivers":
+        await query.edit_message_text(
+            "🌊 Choose a river or water place:"
+            if lang == "en"
+            else "🌊 ڕووبار یان شوێنی ئاوی هەڵبژێرە:",
+            reply_markup=rivers_keyboard(lang),
+        )
+        return
+
+    if data.startswith("river_"):
+        river_id = data.replace("river_", "")
+        river = RIVERS[river_id][lang]
+
+        await query.edit_message_text(
+            river["text"],
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton(
+                        "📍 Google Maps",
+                        url=river["map"]
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        TEXT[lang]["back"],
+                        callback_data="rivers"
                     )
                 ],
             ]),
