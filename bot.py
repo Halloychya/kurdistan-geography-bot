@@ -1283,8 +1283,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                 TEXT[lang]["back"],
                                 callback_data="mountains"
                             )
-                        ],
-                    ]),
+                        ]
+                    ])
                 )
         else:
             await query.edit_message_text(
@@ -1301,8 +1301,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             TEXT[lang]["back"],
                             callback_data="mountains"
                         )
-                    ],
-                ]),
+                    ]
+                ])
             )
 
         return
