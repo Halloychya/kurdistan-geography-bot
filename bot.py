@@ -1,5 +1,6 @@
 import os
-
+import threading
+from flask import Flask
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
@@ -9,6 +10,17 @@ from telegram.ext import (
 )
 
 TOKEN = os.environ["BOT_TOKEN"]
+app = Flask(__name__)
+
+
+@app.route("/")
+def home():
+    return "Kurdistan Geography Bot is running!"
+
+
+def run_web_server():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
 
 
 TEXT = {
@@ -1192,6 +1204,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
+    threading.Thread(target=run_web_server, daemon=True).start()
     app = Application.builder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
