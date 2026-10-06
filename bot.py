@@ -1262,28 +1262,33 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await query.answer()
 
-    data = query.data
-    lang = context.user_data.get("language", "en")
+      if data.startswith("mountain_"):
+        mountain_id = data.replace("mountain_", "")
+        mountain = MOUNTAINS[mountain_id][lang]
 
-    if data.startswith("lang_"):
-        new_lang = data.replace("lang_", "")
-        context.user_data["language"] = new_lang
-
-        await query.edit_message_text(
-            TEXT[new_lang]["welcome"],
-            reply_markup=main_keyboard(new_lang),
-        )
-        return
-        
-  if data.startswith("mountain_"):
-    mountain_id = data.replace("mountain_", "")
-    mountain = MOUNTAINS[mountain_id][lang]
-
-    if "photo" in mountain:
-        with open(mountain["photo"], "rb") as photo:
-            await query.message.reply_photo(
-                photo=photo,
-                caption=mountain["text"],
+        if "photo" in mountain:
+            with open(mountain["photo"], "rb") as photo:
+                await query.message.reply_photo(
+                    photo=photo,
+                    caption=mountain["text"],
+                    reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(
+                                "📍 Google Maps",
+                                url=mountain["map"]
+                            )
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                TEXT[lang]["back"],
+                                callback_data="mountains"
+                            )
+                        ],
+                    ]),
+                )
+        else:
+            await query.edit_message_text(
+                mountain["text"],
                 reply_markup=InlineKeyboardMarkup([
                     [
                         InlineKeyboardButton(
@@ -1299,6 +1304,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     ],
                 ]),
             )
+
+        return
     else:
         await query.edit_message_text(
             mountain["text"],
