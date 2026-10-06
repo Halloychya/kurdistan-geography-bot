@@ -40,7 +40,155 @@ TEXT = {
     },
 }
 
+MOUNTAINS = {
+    "safine": {
+        "en": {
+            "name": "⛰️ Mount Safeen",
+            "text": (
+                "⛰️ Mount Safeen\n\n"
+                "Mount Safeen is one of the famous mountains in the "
+                "Erbil Governorate and rises near Shaqlawa.\n\n"
+                "📍 Famous for: beautiful mountain landscapes, "
+                "hiking areas, and views over the surrounding region."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Mount+Safeen+Iraq",
+        },
+        "ku": {
+            "name": "⛰️ شاخی سەفین",
+            "text": (
+                "⛰️ شاخی سەفین\n\n"
+                "شاخی سەفین یەکێکە لە شاخە ناسراوەکانی "
+                "پارێزگای هەولێر و لە نزیکی شەقڵاوەیە.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی جوانی شاخستانی، "
+                " شوێنی گەشت و ڕووانینە جوانەکانی ناوچەکە ، پێگه‌ی مێژویی ، به‌رهه‌مه‌سروشتیه‌كان."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Mount+Safeen+Iraq",
+        },
+    },
 
+    "azmar": {
+        "en": {
+            "name": "⛰️ Azmar Mountain",
+            "text": (
+                "⛰️ Azmar Mountain\n\n"
+                "Azmar Mountain overlooks Sulaymaniyah and is one of "
+                "the best-known mountains around the city.\n\n"
+                "📍 Famous for: panoramic views of Sulaymaniyah "
+                "and the surrounding valleys."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Azmar+Mountain+Iraq",
+        },
+        "ku": {
+            "name": "⛰️ شاخی ئەزمەر",
+            "text": (
+                "⛰️ شاخی ئەزمەر\n\n"
+                "شاخی ئەزمەر بەسەر شاری سلێمانییەوە دەڕوانێت "
+                "و یەکێکە لە شاخە ناسراوەکانی دەوروبەری شار.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی پانۆرامایی سلێمانی "
+                "و دۆڵەکانی دەوروبەر."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Azmar+Mountain+Iraq",
+        },
+    },
+
+    "zawa": {
+        "en": {
+            "name": "⛰️ Zawa Mountain",
+            "text": (
+                "⛰️ Zawa Mountain\n\n"
+                "Zawa Mountain is located near Duhok and is an "
+                "important natural landmark of the area.\n\n"
+                "📍 Famous for: mountain views and outdoor landscapes."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Zawa+Mountain+Duhok+Iraq",
+        },
+        "ku": {
+            "name": "⛰️ شاخی زاوا",
+            "text": (
+                "⛰️ شاخی زاوا\n\n"
+                "شاخی زاوا لە نزیکی دهۆکە و یەکێکە لە "
+                "نیشانە سروشتییە گرنگەکانی ناوچەکە.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی شاخستانی ، ته‌له‌فریك ، دیمه‌نی پانۆرامای دڵ رفێن ، گرنگی شوێنه‌وار ناسی و سروشتی دەوروبەر."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Zawa+Mountain+Duhok+Iraq",
+        },
+    },
+
+    "korak": {
+        "en": {
+            "name": "⛰️ Korek Mountain",
+            "text": (
+                "⛰️ Korek Mountain\n\n"
+                "Korek Mountain is a major mountain destination "
+                "in Erbil Governorate.\n\n"
+                "📍 Famous for: Korek Resort, cable car, "
+                "and spectacular mountain scenery."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Korek+Mountain+Iraq",
+        },
+        "ku": {
+            "name": "⛰️ شاخی کۆڕەک",
+            "text": (
+                "⛰️ شاخی کۆڕەک\n\n"
+                "شاخی کۆڕەک یەکێکە لە ناوچە شاخاوییە گرنگەکانی "
+                "پارێزگای هەولێر.\n\n"
+                "📍 بەناوبانگە بە: رێزۆرتی کۆڕەک، تەلەفەریک "
+                "و دیمەنی شاخستانی سەرسوڕهێنەر."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Korek+Mountain+Iraq",
+        },
+    },
+
+    "gara": {
+        "en": {
+            "name": "⛰️ Gara Mountain",
+            "text": (
+                "⛰️ Gara Mountain\n\n"
+                "Gara Mountain is a prominent mountain range "
+                "in Duhok Governorate.\n\n"
+                "📍 Famous for: rugged landscapes, valleys, "
+                "and diverse natural scenery."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gara+Mountain+Iraq",
+        },
+        "ku": {
+            "name": "⛰️ شاخی گارە",
+            "text": (
+                "⛰️ شاخی گارە\n\n"
+                "شاخی گارە یەکێکە لە زنجیرە شاخە دیارەکانی "
+                "پارێزگای دهۆک.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی بەردەوامی شاخستانی، "
+                "دۆڵەکان و سروشتی جۆراوجۆر."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gara+Mountain+Iraq",
+        },
+    },
+
+    "halgurd": {
+        "en": {
+            "name": "⛰️ Halgurd Mountain",
+            "text": (
+                "⛰️ Halgurd Mountain\n\n"
+                "Halgurd is one of the highest mountains in Iraq "
+                "and is located in the Erbil Governorate.\n\n"
+                "📍 Famous for: high-altitude landscapes, "
+                "snow in winter, and dramatic valleys."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Halgurd+Mountain+Iraq",
+        },
+        "ku": {
+            "name": "⛰️ شاخی هەڵگورد",
+            "text": (
+                "⛰️ شاخی هەڵگورد\n\n"
+                "هەڵگورد یەکێکە لە بەرزترین شاخەکانی عێراق "
+                "و لە پارێزگای هەولێرە.\n\n"
+                "📍 بەناوبانگە بە: دیمەنی بەرزی شاخستانی، "
+                "بەفر لە زستان و دۆڵە قووڵەکان."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Halgurd+Mountain+Iraq",
+        },
+    },
+}
 CITIES = {
     "erbil": {
         "en": {
@@ -266,7 +414,44 @@ def main_keyboard(lang):
         ],
     ])
 
+def mountains_keyboard(lang):
+    mountains = {
+        "en": [
+            ("Mount Safeen", "safine"),
+            ("Azmar Mountain", "azmar"),
+            ("Zawa Mountain", "zawa"),
+            ("Korek Mountain", "korak"),
+            ("Gara Mountain", "gara"),
+            ("Halgurd Mountain", "halgurd"),
+        ],
+        "ku": [
+            ("شاخی سەفین", "safine"),
+            ("شاخی ئەزمەر", "azmar"),
+            ("شاخی زاوا", "zawa"),
+            ("شاخی کۆڕەک", "korak"),
+            ("شاخی گارە", "gara"),
+            ("شاخی هەڵگورد", "halgurd"),
+        ],
+    }
 
+    buttons = []
+
+    for name, mountain_id in mountains[lang]:
+        buttons.append([
+            InlineKeyboardButton(
+                name,
+                callback_data=f"mountain_{mountain_id}"
+            )
+        ])
+
+    buttons.append([
+        InlineKeyboardButton(
+            TEXT[lang]["back"],
+            callback_data="back_main"
+        )
+    ])
+
+    return InlineKeyboardMarkup(buttons)
 def cities_keyboard(lang):
     cities = {
         "en": [
@@ -357,7 +542,36 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=main_keyboard(new_lang),
         )
         return
+        
+    if data == "mountains":
+        await query.edit_message_text(
+            "⛰️ Choose a mountain:" if lang == "en" else "⛰️ شاخێک هەڵبژێرە:",
+            reply_markup=mountains_keyboard(lang),
+        )
+        return
 
+    if data.startswith("mountain_"):
+        mountain_id = data.replace("mountain_", "")
+        mountain = MOUNTAINS[mountain_id][lang]
+
+        await query.edit_message_text(
+            mountain["text"],
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton(
+                        "📍 Google Maps",
+                        url=mountain["map"]
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        TEXT[lang]["back"],
+                        callback_data="mountains"
+                    )
+                ],
+            ]),
+        )
+        return
     if data == "cities":
         await query.edit_message_text(
             TEXT[lang]["choose_city"],
