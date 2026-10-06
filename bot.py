@@ -1289,7 +1289,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         mountain = MOUNTAINS[mountain_id][lang]
 
         if "photo" in mountain:
-            with open(mountain["photo"], "rb") as photo:
+with open(mountain["photo"], "rb") as photo:
                 await query.message.reply_photo(
                     photo=photo,
                     caption=mountain["text"],
