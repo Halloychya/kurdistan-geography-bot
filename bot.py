@@ -1258,12 +1258,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-
     await query.answer()
 
     data = query.data
     lang = context.user_data.get("language", "en")
 
+    # Language
     if data.startswith("lang_"):
         new_lang = data.replace("lang_", "")
         context.user_data["language"] = new_lang
@@ -1273,6 +1273,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=main_keyboard(new_lang),
         )
         return
+
+    # Mountains menu
     if data == "mountains":
         await query.edit_message_text(
             "⛰️ Choose a mountain:" if lang == "en"
@@ -1280,14 +1282,53 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=mountains_keyboard(lang),
         )
         return
-           if data.startswith("mountain_"):
-        mountain_id = data.replace("mountain_", "")
 
-        await query.edit_message_text(
-            f"Mountain clicked: {mountain_id}"
-        )
+    # Individual mountain
+    if data.startswith("mountain_"):
+        mountain_id = data.replace("mountain_", "")
+        mountain = MOUNTAINS[mountain_id][lang]
+
+        if "photo" in mountain:
+            with open(mountain["photo"], "rb") as photo:
+                await query.message.reply_photo(
+                    photo=photo,
+                    caption=mountain["text"],
+                    reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(
+                                "📍 Google Maps",
+                                url=mountain["map"]
+                            )
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                TEXT[lang]["back"],
+                                callback_data="mountains"
+                            )
+                        ]
+                    ])
+                )
+        else:
+            await query.edit_message_text(
+                mountain["text"],
+                reply_markup=InlineKeyboardMarkup([
+                    [
+                        InlineKeyboardButton(
+                            "📍 Google Maps",
+                            url=mountain["map"]
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            TEXT[lang]["back"],
+                            callback_data="mountains"
+                        )
+                    ]
+                ])
+            )
         return
 
+    # Rivers
     if data == "rivers":
         await query.edit_message_text(
             "🌊 Choose a river or water place:"
@@ -1315,10 +1356,12 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         TEXT[lang]["back"],
                         callback_data="rivers"
                     )
-                ],
+                ]
             ]),
         )
         return
+
+    # Cities
     if data == "cities":
         await query.edit_message_text(
             TEXT[lang]["choose_city"],
@@ -1335,6 +1378,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=city_keyboard(city_id, lang),
         )
         return
+
+    # Facts
     if data == "facts":
         keyboard = []
 
@@ -1377,6 +1422,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ]),
         )
         return
+
+    # Back to main menu
     if data == "back_main":
         await query.edit_message_text(
             TEXT[lang]["welcome"],
@@ -1384,42 +1431,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
+    # Language menu
     if data == "language":
         await query.edit_message_text(
             TEXT[lang]["choose"],
             reply_markup=language_keyboard(),
         )
         return
-
-    messages = {
-        "mountains": {
-            "en": "⛰️ Mountains\n\nComing soon...",
-            "ku": "⛰️ شاخەکان\n\nبەم زووانە...",
-        },
-        "rivers": {
-            "en": "🌊 Rivers & Lakes\n\nComing soon...",
-            "ku": "🌊 ڕووبار و دەریاچەکان\n\nبەم زووانە...",
-        },
-        "nature": {
-            "en": "🏞️ Natural Places\n\nComing soon...",
-            "ku": "🏞️ شوێنە سروشتییەکان\n\nبەم زووانە...",
-        },
-        "locations": {
-            "en": "📍 Locations\n\nComing soon...",
-            "ku": "📍 شوێنەکان\n\nبەم زووانە...",
-        },
-        "facts": {
-            "en": "📚 Geography Facts\n\nComing soon...",
-            "ku": "📚 زانیاری جوگرافیایی\n\nبەم زووانە...",
-        },
-    }
-
-    if data in messages:
-        await query.edit_message_text(
-            messages[data][lang],
-            reply_markup=main_keyboard(lang),
-        )
-
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
