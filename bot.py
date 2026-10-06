@@ -1280,7 +1280,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=mountains_keyboard(lang),
         )
         return
-        if data.startswith("mountain_"):
+           if data.startswith("mountain_"):
         mountain_id = data.replace("mountain_", "")
 
         await query.edit_message_text(
