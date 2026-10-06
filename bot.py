@@ -1149,7 +1149,7 @@ def rivers_keyboard(lang):
 def mountains_keyboard(lang):
     mountains = {
         "en": [
-            ("Mount Safeen", "safine"),
+            ("Safeen Mountain", "safine"),
             ("Azmar Mountain", "azmar"),
             ("Zawa Mountain", "zawa"),
             ("Korek Mountain", "korak"),
