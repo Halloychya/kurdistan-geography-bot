@@ -1261,9 +1261,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
 
     await query.answer()
-
-
-                    
+    data = query.data
+    lang = context.user_data.get("language", "en")
+               
     if data.startswith("mountain_"):
         mountain_id = data.replace("mountain_", "")
         mountain = MOUNTAINS[mountain_id][lang]
