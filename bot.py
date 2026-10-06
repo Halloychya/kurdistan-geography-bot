@@ -1273,7 +1273,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=main_keyboard(new_lang),
         )
         return
-
+    if data == "mountains":
+        await query.edit_message_text(
+            "⛰️ Choose a mountain:" if lang == "en"
+            else "⛰️ چیاێک هەڵبژێرە:",
+            reply_markup=mountains_keyboard(lang),
+        )
+        return
     if data.startswith("mountain_"):
         mountain_id = data.replace("mountain_", "")
         mountain = MOUNTAINS[mountain_id][lang]
