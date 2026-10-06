@@ -908,7 +908,7 @@ def rivers_keyboard(lang):
             ("🌊 زێی بچووک", "little_zab"),
             ("🌊 سیروان (Darbandixan)", "sirwan"),
             ("🌊 خابور", "khabur"),
-            ("🌊 ئاوه‌سپی", "Awaspi"),
+            ("🌊 ئاوه‌سپی", "adhaim"),
             ("🌊 خازر", "khazir"),
             ("🌊 تانجەڕۆ", "tanjero"),
             ("🌊 ڕووباری ڕەواندز", "rwandz"),
@@ -1099,8 +1099,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 ],
             ]),
         )
-        return
-            if data == "rivers":
+       return
+
+    if data == "rivers":
         await query.edit_message_text(
             "🌊 Choose a river or water place:"
             if lang == "en"
