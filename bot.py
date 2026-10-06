@@ -14,6 +14,7 @@ TOKEN = os.environ["BOT_TOKEN"]
 TEXT = {
     "en": {
         "welcome": "🌍 Welcome to Kurdistan Geography!",
+        "choose": "Please choose a language:",
         "cities": "🏙️ Cities",
         "mountains": "⛰️ Mountains",
         "rivers": "🌊 Rivers & Lakes",
@@ -26,6 +27,7 @@ TEXT = {
     },
     "ku": {
         "welcome": "🌍 بەخێربێیت بۆ جوگرافیای کوردستان!",
+        "choose": "تکایە زمانەکەت هەڵبژێرە:",
         "cities": "🏙️ شارەکان",
         "mountains": "⛰️ شاخەکان",
         "rivers": "🌊 ڕووبار و دەریاچەکان",
@@ -46,9 +48,9 @@ CITIES = {
             "text": (
                 "🏙️ Erbil\n\n"
                 "Erbil is the capital of the Kurdistan Region of Iraq "
-                "and one of the oldest continuously inhabited cities in the world.\n\n"
+                "and one of the world's oldest continuously inhabited cities.\n\n"
                 "📍 Famous for: Erbil Citadel, Sami Abdulrahman Park, "
-                "and its historic bazaars."
+                "and its historic bazaar."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Erbil+Iraq",
         },
@@ -59,11 +61,12 @@ CITIES = {
                 "هەولێر پایتەختی هەرێمی کوردستانی عێراقە و "
                 "یەکێکە لە کۆنترین شارە بەردەوام نیشتەجێبووەکانی جیهان.\n\n"
                 "📍 بەناوبانگە بە: قەڵای هەولێر، پارکی سامی "
-                "عبدالڕەحمان و بازاڕە کۆنەکەی."
+                "عه‌بدولرەحمان و بازاڕە کۆنەکەی."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Erbil+Iraq",
         },
     },
+
     "sulaymaniyah": {
         "en": {
             "name": "🏙️ Sulaymaniyah",
@@ -80,7 +83,7 @@ CITIES = {
             "name": "🏙️ سلێمانی",
             "text": (
                 "🏙️ سلێمانی\n\n"
-                "سلێمانی یەکێکە لە شارە گرنگە کەلتووری و خوێندنگەییەکانی "
+                "سلێمانی یەکێکە لە شارە گرنگەكان له‌ بواری کلتووری و فێربوون "
                 "هەرێمی کوردستانی عێراق.\n\n"
                 "📍 بەناوبانگە بە: شاخی ئەزمەر، ناوچەی دوکان، "
                 "مۆزەخانەکان و ژیانی کەلتووری."
@@ -88,6 +91,7 @@ CITIES = {
             "map": "https://www.google.com/maps/search/?api=1&query=Sulaymaniyah+Iraq",
         },
     },
+
     "duhok": {
         "en": {
             "name": "🏙️ Duhok",
@@ -105,22 +109,23 @@ CITIES = {
             "text": (
                 "🏙️ دهۆک\n\n"
                 "دهۆک شارێکە لە بەشی باکووری هەرێمی کوردستان "
-                "کە بە شاخەکان دەورەدراوە.\n\n"
-                "📍 بەناوبانگە بە: بەندی دهۆک، شاخی زاوا "
+                " بە شاخەکان دەورەدراوە.\n\n"
+                "📍 بەناوبانگە بە: بەنداوی دهۆک، شاخی زاوا "
                 "و دۆڵە جوانەکانی."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Duhok+Iraq",
         },
     },
+
     "halabja": {
         "en": {
             "name": "🏙️ Halabja",
             "text": (
                 "🏙️ Halabja\n\n"
-                "Halabja is a city in the Kurdistan Region, "
-                "near the Iranian border and the Hawraman mountains.\n\n"
-                "📍 The city is known for its history, culture, "
-                "and surrounding mountain landscapes."
+                "Halabja is a city in the Kurdistan Region near "
+                "the Iranian border and the Hawraman mountains.\n\n"
+                "📍 Known for its history, culture, and surrounding "
+                "mountain landscapes."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Halabja+Iraq",
         },
@@ -129,21 +134,20 @@ CITIES = {
             "text": (
                 "🏙️ هەڵەبجە\n\n"
                 "هەڵەبجە شارێکە لە هەرێمی کوردستان، "
-                "نزیک سنووری ئێران و شاخەکانی هەورامان.\n\n"
-                "📍 شارەکە بە مێژوو، کەلتوور و دیمەنی شاخاویی "
-                "دەوروبەرەکەی ناسراوە."
+                "نزیکه‌ له‌ سنووری ئێران و شاخەکانی هەورامان.\n\n"
+                "📍 بە مێژوو و کەلتوور و دیمەنی شاخاویی دەوروبەرەکەی ناسراوە."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Halabja+Iraq",
         },
     },
+
     "akre": {
         "en": {
             "name": "🏙️ Akre",
             "text": (
                 "🏙️ Akre\n\n"
-                "Akre is a historic mountain city in the Duhok Governorate "
-                "of the Kurdistan Region.\n\n"
-                "📍 Famous for: its old houses, mountains, "
+                "Akre is a historic mountain city in Duhok Governorate.\n\n"
+                "📍 Famous for its old houses, mountains, "
                 "and traditional Newroz celebrations."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Akre+Iraq",
@@ -152,14 +156,14 @@ CITIES = {
             "name": "🏙️ ئاکرێ",
             "text": (
                 "🏙️ ئاکرێ\n\n"
-                "ئاکرێ شارێکی مێژوویی شاخاوییە لە پارێزگای دهۆک "
-                "لە هەرێمی کوردستان.\n\n"
-                "📍 بەناوبانگە بە: خانووە کۆنەکان، شاخەکان "
-                "و جەژنی نەورۆزی نەریتی."
+                "ئاکرێ شارێکی مێژوویی شاخاوییە لە پارێزگای دهۆک.\n\n"
+                "📍 بەناوبانگە بە خانووە کۆنەکان، شاخەکان "
+                "و ڕێوڕه‌سمی جەژنی نەورۆز."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Akre+Iraq",
         },
     },
+
     "rawanduz": {
         "en": {
             "name": "🏙️ Rawanduz",
@@ -176,12 +180,13 @@ CITIES = {
             "text": (
                 "🏙️ ڕەواندز\n\n"
                 "ڕەواندز شارۆچکەیەکی مێژووییە کە بە شاخ و "
-                "دۆڵە قووڵەکان دەورەدراوە لە پارێزگای هەولێر.\n\n"
-                "📍 بەناوبانگە بە: کانی ڕەواندز و ئاوی بەخاڵ."
+                "دۆڵە قووڵەکان دەورەدراوە.\n\n"
+                "📍 بەناوبانگە بە کانی ڕەواندز و خه‌ره‌ند و ئاوی بێخاڵ."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Rawanduz+Iraq",
         },
     },
+
     "shaqlawa": {
         "en": {
             "name": "🏙️ Shaqlawa",
@@ -189,7 +194,7 @@ CITIES = {
                 "🏙️ Shaqlawa\n\n"
                 "Shaqlawa is a popular mountain town in Erbil Governorate, "
                 "known for its pleasant climate and surrounding mountains.\n\n"
-                "📍 Famous for: Safeen Mountain and its green landscapes."
+                "📍 Famous for: Safeen Mountain and green landscapes."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Shaqlawa+Iraq",
         },
@@ -197,13 +202,13 @@ CITIES = {
             "name": "🏙️ شەقڵاوە",
             "text": (
                 "🏙️ شەقڵاوە\n\n"
-                "شەقڵاوە شارۆچکەیەکی شاخاوییە لە پارێزگای هەولێر "
-                "و بە کەش و هەوای خۆش و شاخەکانی دەوروبەر ناسراوە.\n\n"
-                "📍 بەناوبانگە بە: شاخی سەفین و دیمەنی سەوز."
+                "شەقڵاوە شارۆچکەیەکی شاخاوییە لە پارێزگای هەولێر.\n\n"
+                "📍 بەناوبانگە بە شاخی سەفین و ناوچه‌ی گه‌شتیاری هیران و به‌نداوی ئاقوبان و دیمەنی سەوز."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Shaqlawa+Iraq",
         },
     },
+
     "zakho": {
         "en": {
             "name": "🏙️ Zakho",
@@ -212,7 +217,7 @@ CITIES = {
                 "Zakho is a city in Duhok Governorate near the "
                 "Iraq–Turkey border.\n\n"
                 "📍 Famous for: Delal Bridge, the Khabur River, "
-                "and its important location for regional trade."
+                "and regional trade."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Zakho+Iraq",
         },
@@ -222,7 +227,7 @@ CITIES = {
                 "🏙️ زاخۆ\n\n"
                 "زاخۆ شارێکە لە پارێزگای دهۆک و نزیک سنووری "
                 "عێراق و تورکیایە.\n\n"
-                "📍 بەناوبانگە بە: پردی دڵاڵ، ڕووباری خابوور "
+                "📍 بەناوبانگە بە پردی ده‌لال، ڕووباری خابوور "
                 "و شوێنی گرنگی بازرگانی."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Zakho+Iraq",
@@ -234,14 +239,8 @@ CITIES = {
 def language_keyboard():
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton(
-                "🏔️ کوردی",
-                callback_data="lang_ku"
-            ),
-            InlineKeyboardButton(
-                "🇬🇧 English",
-                callback_data="lang_en"
-            ),
+            InlineKeyboardButton("🏔️ کوردی", callback_data="lang_ku"),
+            InlineKeyboardButton("🇬🇧 English", callback_data="lang_en"),
         ]
     ])
 
@@ -269,7 +268,7 @@ def main_keyboard(lang):
 
 
 def cities_keyboard(lang):
-    names = {
+    cities = {
         "en": [
             ("Erbil", "erbil"),
             ("Sulaymaniyah", "sulaymaniyah"),
@@ -294,7 +293,7 @@ def cities_keyboard(lang):
 
     buttons = []
 
-    for name, city_id in names[lang]:
+    for name, city_id in cities[lang]:
         buttons.append([
             InlineKeyboardButton(
                 name,
@@ -343,21 +342,21 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
+
     await query.answer()
 
     data = query.data
+    lang = context.user_data.get("language", "en")
 
     if data.startswith("lang_"):
-        lang = data.replace("lang_", "")
-        context.user_data["language"] = lang
+        new_lang = data.replace("lang_", "")
+        context.user_data["language"] = new_lang
 
         await query.edit_message_text(
-            TEXT[lang]["welcome"],
-            reply_markup=main_keyboard(lang),
+            TEXT[new_lang]["welcome"],
+            reply_markup=main_keyboard(new_lang),
         )
         return
-
-    lang = context.user_data.get("language", "en")
 
     if data == "cities":
         await query.edit_message_text(
@@ -423,13 +422,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def main():
     app = Application.builder().token(TOKEN).build()
 
-    app.add_handler(
-        CommandHandler("start", start)
-    )
-
-    app.add_handler(
-        CallbackQueryHandler(button)
-    )
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CallbackQueryHandler(button))
 
     print("Kurdistan Geography Bot is running...")
 
