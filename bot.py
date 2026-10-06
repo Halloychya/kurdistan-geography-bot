@@ -1099,7 +1099,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 ],
             ]),
         )
-       return
+        return
 
     if data == "rivers":
         await query.edit_message_text(
