@@ -1308,7 +1308,25 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         ]
                     ])
                 )
-            return
+        else:
+            await query.edit_message_text(
+                mountain["text"],
+                reply_markup=InlineKeyboardMarkup([
+                    [
+                        InlineKeyboardButton(
+                            "📍 Google Maps",
+                            url=mountain["map"]
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            TEXT[lang]["back"],
+                            callback_data="mountains"
+                        )
+                    ]
+                ])
+            )
+        return
     # Rivers
     if data == "rivers":
         await query.edit_message_text(
