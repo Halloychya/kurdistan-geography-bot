@@ -2746,6 +2746,41 @@ def mountains_keyboard(lang):
 def locations_keyboard(lang):
     categories = {}
 
+    category_names = {
+        "🏛️ Ancient & History": {
+            "en": "🏛️ Ancient & History",
+            "ku": "🏛️ شوێنە مێژووییەکان",
+        },
+        "🌳 Nature & Parks": {
+            "en": "🌳 Nature & Parks",
+            "ku": "🌳 سروشت و پارکەکان",
+        },
+        "🏘️ Towns & Culture": {
+            "en": "🏘️ Towns & Culture",
+            "ku": "🏘️ شارۆچکە و کەلتوور",
+        },
+        "🏔️ Mountains & Canyons": {
+            "en": "🏔️ Mountains & Canyons",
+            "ku": "🏔️ شاخەکان و کانیۆنەکان",
+        },
+        "💦 Waterfalls & Nature": {
+            "en": "💦 Waterfalls & Nature",
+            "ku": "💦 ئاوشار و سروشت",
+        },
+        "🏔️ Mountains & Viewpoints": {
+            "en": "🏔️ Mountains & Viewpoints",
+            "ku": "🏔️ شاخ و خاڵەکانی دیمەن",
+        },
+        "🌊 Lakes & Water": {
+            "en": "🌊 Lakes & Water",
+            "ku": "🌊 دەریاچە و ئاو",
+        },
+        "🕍 Cultural & Sacred": {
+            "en": "🕍 Cultural & Sacred",
+            "ku": "🕍 کەلتووری و پیرۆز",
+        },
+    }
+
     for location_id, location in LOCATIONS.items():
         category = location["category"]
 
@@ -2757,9 +2792,14 @@ def locations_keyboard(lang):
     buttons = []
 
     for category in categories:
+        button_text = category_names.get(
+            category,
+            {}
+        ).get(lang, category)
+
         buttons.append([
             InlineKeyboardButton(
-                category,
+                button_text,
                 callback_data=f"loccat_{category}"
             )
         ])
@@ -3091,7 +3131,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     # =========================
-    # LOCATIONS
+    # 
     # =========================
 
     if data == "locations":
