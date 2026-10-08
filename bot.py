@@ -2923,6 +2923,27 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     data = query.data
     lang = context.user_data.get("language", "en")
+    
+    # =========================
+    # SEARCH FOR A PLACE
+    # =========================
+
+    if data == "search_place":
+        await query.answer()
+
+        context.user_data["searching_place"] = True
+
+        search_text = (
+            "🔎 Enter the name of a place in Kurdistan.\n\n"
+            "Examples: Erbil Citadel, Mount Safeen, Dukan Lake"
+            if lang == "en"
+            else
+            "🔎 ناوی شوێنێک لە کوردستان بنووسە.\n\n"
+            "نموونە: قەڵای هەولێر، چیای سەفین، دەریاچەی دووکان"
+        )
+
+        await query.message.reply_text(search_text)
+        return
 
     # =========================
     # QUIZ MENU
