@@ -2029,7 +2029,7 @@ def mountains_keyboard(lang):
     ])
 
     return InlineKeyboardMarkup(buttons)
-    def locations_keyboard(lang):
+def locations_keyboard(lang):
     categories = {}
 
     for location_id, location in LOCATIONS.items():
@@ -2058,7 +2058,6 @@ def mountains_keyboard(lang):
     ])
 
     return InlineKeyboardMarkup(buttons)
-
 
 def location_category_keyboard(category, lang):
     buttons = []
