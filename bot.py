@@ -2425,8 +2425,22 @@ def quiz_keyboard(question, lang):
             )
         ])
 
-    # Save the shuffled answers so the correct answer
-    # still works after randomizing the buttons.
+    # End Quiz button
+    if lang == "en":
+        buttons.append([
+            InlineKeyboardButton(
+                "❌ End Quiz",
+                callback_data="quiz_end"
+            )
+        ])
+    else:
+        buttons.append([
+            InlineKeyboardButton(
+                "❌ کۆتایی هێنان بە تاقیکردنەوە",
+                callback_data="quiz_end"
+            )
+        ])
+
     return options, InlineKeyboardMarkup(buttons)
 
 
@@ -2623,6 +2637,52 @@ def rivers_keyboard(lang):
         ],
     }
 
+def rivers_keyboard(lang):
+    rivers = {
+        "en": [
+            ("Tigris River", "tigris"),
+            ("Euphrates River", "euphrates"),
+            ("Great Zab", "great_zab"),
+            ("Little Zab", "little_zab"),
+            ("Sirwan River", "sirwan"),
+            ("Khabur River", "khabur"),
+            ("Adhaim River", "adhaim"),
+            ("Khazir River", "khazir"),
+            ("Tanjero River", "tanjero"),
+            ("Rawanduz River", "rwandz"),
+            ("Gali Ali Beg", "gali_ali_bag"),
+            ("Shamdinan River", "shamdinan"),
+            ("Murat River", "murat"),
+            ("Karasu River", "karasu"),
+            ("Botan River", "botan"),
+            ("Aras River", "aras"),
+            ("Zarrineh River", "zarrinarud"),
+            ("Simineh River", "siminarud"),
+            ("Qezel Ozan", "ghezel_ozan"),
+        ],
+        "ku": [
+            ("ڕووباری دیجلە", "tigris"),
+            ("ڕووباری فورات", "euphrates"),
+            ("زێی گەورە", "great_zab"),
+            ("زێی بچووک", "little_zab"),
+            ("ڕووباری سیروان", "sirwan"),
+            ("ڕووباری خابوور", "khabur"),
+            ("ڕووباری عەدهایم", "adhaim"),
+            ("ڕووباری خازر", "khazir"),
+            ("ڕووباری تەنژەرۆ", "tanjero"),
+            ("ڕووباری ڕەواندز", "rwandz"),
+            ("گالی عەلی بەگ", "gali_ali_bag"),
+            ("ڕووباری شەمەدینان", "shamdinan"),
+            ("ڕووباری مورات", "murat"),
+            ("ڕووباری کاراسو", "karasu"),
+            ("ڕووباری بۆتان", "botan"),
+            ("ڕووباری ئاراس", "aras"),
+            ("ڕووباری زەڕینە", "zarrinarud"),
+            ("ڕووباری سیمینە", "siminarud"),
+            ("قەزەل ئۆزان", "ghezel_ozan"),
+        ],
+    }
+
     buttons = []
 
     for name, river_id in rivers[lang]:
@@ -2641,6 +2701,8 @@ def rivers_keyboard(lang):
     ])
 
     return InlineKeyboardMarkup(buttons)
+
+
 def mountains_keyboard(lang):
     mountains = {
         "en": [
@@ -2679,6 +2741,8 @@ def mountains_keyboard(lang):
     ])
 
     return InlineKeyboardMarkup(buttons)
+
+
 def locations_keyboard(lang):
     categories = {}
 
@@ -2709,6 +2773,7 @@ def locations_keyboard(lang):
 
     return InlineKeyboardMarkup(buttons)
 
+
 def location_category_keyboard(category, lang):
     buttons = []
 
@@ -2729,6 +2794,8 @@ def location_category_keyboard(category, lang):
     ])
 
     return InlineKeyboardMarkup(buttons)
+
+
 def cities_keyboard(lang):
     cities = {
         "en": [
@@ -2801,17 +2868,20 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=language_keyboard(),
     )
 
+
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
 
     data = query.data
     lang = context.user_data.get("language", "en")
-        # =========================
+
+    # =========================
     # QUIZ MENU
     # =========================
 
     if data == "quiz_menu":
+        await query.answer()
+
         quiz_text = (
             "🎯 KURDISTAN GEOGRAPHY QUIZ\n\n"
             "Test your knowledge of Kurdistan geography!\n\n"
@@ -2840,7 +2910,53 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "quiz_start":
+        await query.answer()
         await start_quiz(query, context, lang)
+        return
+
+    # =========================
+    # END QUIZ
+    # =========================
+
+    if data == "quiz_end":
+        quiz = context.user_data.get("quiz")
+
+        if not quiz:
+            await query.answer(
+                "No active quiz.",
+                show_alert=True
+            )
+            return
+
+        await query.answer()
+
+        score = quiz["score"]
+        current = quiz["current"]
+
+        if quiz["language"] == "en":
+            result_text = (
+                "🎯 KURDISTAN GEOGRAPHY QUIZ\n\n"
+                "🛑 QUIZ ENDED\n\n"
+                f"⭐ Your score: {score}/{current}\n"
+                f"📚 Questions completed: {current}/15\n\n"
+                "You can start a new quiz anytime!"
+            )
+        else:
+            result_text = (
+                "🎯 تاقیکردنەوەی جوگرافیای کوردستان\n\n"
+                "🛑 تاقیکردنەوەکە کۆتایی پێهات\n\n"
+                f"⭐ نمرەکەت: {score}/{current}\n"
+                f"📚 پرسیارە تەواوکراوەکان: {current}/15\n\n"
+                "دەتوانیت هەر کاتێک تاقیکردنەوەیەکی نوێ دەست پێ بکەیت!"
+            )
+
+        await query.edit_message_text(
+            result_text,
+            reply_markup=quiz_result_keyboard(
+                quiz["language"]
+            )
+        )
+
         return
 
     # =========================
@@ -2857,12 +2973,17 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        answer_index = int(data.replace("quiz_answer_", ""))
+        answer_index = int(
+            data.replace("quiz_answer_", "")
+        )
 
         options = quiz["current_options"]
 
         if answer_index >= len(options):
-            await query.answer("Invalid answer.", show_alert=True)
+            await query.answer(
+                "Invalid answer.",
+                show_alert=True
+            )
             return
 
         selected_answer = options[answer_index]
@@ -2875,20 +2996,27 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if selected_answer == correct_answer:
             quiz["score"] += 1
-            is_correct = True
+            answer_message = (
+                "✅ Correct!"
+                if quiz["language"] == "en"
+                else "✅ ڕاستە!"
+            )
         else:
-            is_correct = False
+            answer_message = (
+                "❌ Wrong!"
+                if quiz["language"] == "en"
+                else "❌ هەڵەیە!"
+            )
 
-        # Prevent pressing the same answer button again.
-        await query.answer(
-            "✅ Correct!" if is_correct else "❌ Wrong!"
-        )
+        await query.answer(answer_message)
 
         quiz["current"] += 1
 
-        # More questions remain.
         if quiz["current"] < 15:
-            await show_quiz_question(query, context)
+            await show_quiz_question(
+                query,
+                context
+            )
             return
 
         # =========================
@@ -2898,6 +3026,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         score = quiz["score"]
 
         if quiz["language"] == "en":
+
             if score >= 13:
                 message = "🏆 Excellent!"
             elif score >= 10:
@@ -2915,6 +3044,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
 
         else:
+
             if score >= 13:
                 message = "🏆 زۆر نایاب!"
             elif score >= 10:
@@ -2937,11 +3067,21 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 quiz["language"]
             )
         )
+
         return
 
-    # Language
+    # =========================
+    # LANGUAGE
+    # =========================
+
     if data.startswith("lang_"):
+        await query.answer()
+
         new_lang = data.replace("lang_", "")
+
+        if new_lang not in ["en", "ku"]:
+            new_lang = "en"
+
         context.user_data["language"] = new_lang
 
         await query.edit_message_text(
@@ -2949,7 +3089,14 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=main_keyboard(new_lang),
         )
         return
+
+    # =========================
+    # LOCATIONS
+    # =========================
+
     if data == "locations":
+        await query.answer()
+
         title = (
             "📍 EXPLORE KURDISTAN\n\n"
             "Choose a type of destination:"
@@ -2965,20 +3112,38 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
+    # =========================
+    # LOCATION CATEGORY
+    # =========================
+
     if data.startswith("loccat_"):
+        await query.answer()
+
         category = data.replace("loccat_", "")
 
         await query.edit_message_text(
             category,
-            reply_markup=location_category_keyboard(category, lang)
+            reply_markup=location_category_keyboard(
+                category,
+                lang
+            )
         )
         return
 
+    # =========================
+    # INDIVIDUAL LOCATION
+    # =========================
+
     if data.startswith("location_"):
+        await query.answer()
+
         location_id = data.replace("location_", "")
 
         if location_id not in LOCATIONS:
-            await query.answer("Location not found.")
+            await query.answer(
+                "Location not found.",
+                show_alert=True
+            )
             return
 
         location = LOCATIONS[location_id][lang]
@@ -3007,22 +3172,50 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ])
         )
         return
-    # Mountains menu
+
+    # =========================
+    # MOUNTAINS MENU
+    # =========================
+
     if data == "mountains":
+        await query.answer()
+
         await query.edit_message_text(
-            "⛰️ Choose a mountain:" if lang == "en"
-            else "⛰️ چیاێک هەڵبژێرە:",
+            "⛰️ Choose a mountain:"
+            if lang == "en"
+            else
+            "⛰️ چیاێک هەڵبژێرە:",
             reply_markup=mountains_keyboard(lang),
         )
         return
 
-    # Individual mountain
+    # =========================
+    # INDIVIDUAL MOUNTAIN
+    # =========================
+
     if data.startswith("mountain_"):
-        mountain_id = data.replace("mountain_", "")
+        await query.answer()
+
+        mountain_id = data.replace(
+            "mountain_",
+            ""
+        )
+
+        if mountain_id not in MOUNTAINS:
+            await query.answer(
+                "Mountain not found.",
+                show_alert=True
+            )
+            return
+
         mountain = MOUNTAINS[mountain_id][lang]
 
         if "photo" in mountain:
-            with open(mountain["photo"], "rb") as photo:
+            with open(
+                mountain["photo"],
+                "rb"
+            ) as photo:
+
                 await query.message.reply_photo(
                     photo=photo,
                     caption=mountain["text"],
@@ -3059,19 +3252,44 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     ]
                 ])
             )
+
         return
-    # Rivers
+
+    # =========================
+    # RIVERS
+    # =========================
+
     if data == "rivers":
+        await query.answer()
+
         await query.edit_message_text(
             "🌊 Choose a river or water place:"
             if lang == "en"
-            else "🌊 ڕووبار یان شوێنی ئاوی هەڵبژێرە:",
+            else
+            "🌊 ڕووبار یان شوێنی ئاوی هەڵبژێرە:",
             reply_markup=rivers_keyboard(lang),
         )
         return
 
+    # =========================
+    # INDIVIDUAL RIVER
+    # =========================
+
     if data.startswith("river_"):
-        river_id = data.replace("river_", "")
+        await query.answer()
+
+        river_id = data.replace(
+            "river_",
+            ""
+        )
+
+        if river_id not in RIVERS:
+            await query.answer(
+                "River not found.",
+                show_alert=True
+            )
+            return
+
         river = RIVERS[river_id][lang]
 
         await query.edit_message_text(
@@ -3093,26 +3311,56 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    # Cities
+    # =========================
+    # CITIES
+    # =========================
+
     if data == "cities":
+        await query.answer()
+
         await query.edit_message_text(
             TEXT[lang]["choose_city"],
             reply_markup=cities_keyboard(lang),
         )
         return
 
+    # =========================
+    # INDIVIDUAL CITY
+    # =========================
+
     if data.startswith("city_"):
-        city_id = data.replace("city_", "")
+        await query.answer()
+
+        city_id = data.replace(
+            "city_",
+            ""
+        )
+
+        if city_id not in CITIES:
+            await query.answer(
+                "City not found.",
+                show_alert=True
+            )
+            return
+
         city = CITIES[city_id][lang]
 
         await query.edit_message_text(
             city["text"],
-            reply_markup=city_keyboard(city_id, lang),
+            reply_markup=city_keyboard(
+                city_id,
+                lang
+            ),
         )
         return
 
-    # Facts
+    # =========================
+    # FACTS
+    # =========================
+
     if data == "facts":
+        await query.answer()
+
         keyboard = []
 
         for fact_id, fact in FACTS.items():
@@ -3133,13 +3381,33 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text(
             "📚 Choose a geography fact:"
             if lang == "en"
-            else "📚 زانیارییەکی جوگرافی هەڵبژێرە:",
-            reply_markup=InlineKeyboardMarkup(keyboard),
+            else
+            "📚 زانیارییەکی جوگرافی هەڵبژێرە:",
+            reply_markup=InlineKeyboardMarkup(
+                keyboard
+            ),
         )
         return
 
+    # =========================
+    # INDIVIDUAL FACT
+    # =========================
+
     if data.startswith("fact_"):
-        fact_id = data.replace("fact_", "")
+        await query.answer()
+
+        fact_id = data.replace(
+            "fact_",
+            ""
+        )
+
+        if fact_id not in FACTS:
+            await query.answer(
+                "Fact not found.",
+                show_alert=True
+            )
+            return
+
         fact = FACTS[fact_id][lang]
 
         await query.edit_message_text(
@@ -3155,50 +3423,98 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    # Back to main menu
+    # =========================
+    # BACK TO MAIN MENU
+    # =========================
+
     if data == "back_main":
+        await query.answer()
+
         await query.edit_message_text(
             TEXT[lang]["welcome"],
             reply_markup=main_keyboard(lang),
         )
         return
 
-    # Language menu
+    # =========================
+    # LANGUAGE MENU
+    # =========================
+
     if data == "language":
+        await query.answer()
+
         await query.edit_message_text(
             TEXT[lang]["choose"],
             reply_markup=language_keyboard(),
         )
         return
+
+
+# =========================
+# RENDER HEALTH SERVER
+# =========================
+
 class HealthHandler(BaseHTTPRequestHandler):
+
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(b"Kurdistan Geography Bot is running!")
+
+        self.wfile.write(
+            b"Kurdistan Geography Bot is running!"
+        )
 
     def log_message(self, format, *args):
         return
 
 
 def run_health_server():
-    port = int(os.environ.get("PORT", 10000))
-    server = HTTPServer(("0.0.0.0", port), HealthHandler)
+    port = int(
+        os.environ.get(
+            "PORT",
+            10000
+        )
+    )
+
+    server = HTTPServer(
+        ("0.0.0.0", port),
+        HealthHandler
+    )
+
     server.serve_forever()
 
 
+# =========================
+# MAIN
+# =========================
+
 def main():
+
     health_thread = threading.Thread(
         target=run_health_server,
         daemon=True
     )
+
     health_thread.start()
 
     app = Application.builder().token(TOKEN).build()
 
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CallbackQueryHandler(button))
+    app.add_handler(
+        CommandHandler(
+            "start",
+            start
+        )
+    )
 
-    print("Kurdistan Geography Bot is running...")
+    app.add_handler(
+        CallbackQueryHandler(
+            button
+        )
+    )
+
+    print(
+        "Kurdistan Geography Bot is running..."
+    )
 
     app.run_polling()
 
