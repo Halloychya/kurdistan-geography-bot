@@ -56,7 +56,7 @@ MOUNTAINS = {
                 "hiking areas, and views over the surrounding region."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Mount+Safeen+Iraq",
-            "photo": "images/safeen.jpg",
+            
         },
         "ku": {
             "name": "⛰️ شاخی سەفین",
@@ -68,7 +68,7 @@ MOUNTAINS = {
                 " شوێنی گەشت و ڕووانینە جوانەکانی ناوچەکە ، پێگه‌ی مێژویی ، به‌رهه‌مه‌سروشتیه‌كان."
             ),
             "map": "https://www.google.com/maps/search/?api=1&query=Mount+Safeen+Iraq",
-            "photo": "images/safeen.jpg",
+          
         },
     },
 
