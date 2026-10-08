@@ -852,6 +852,851 @@ CITIES = {
         },
     },
 }
+LOCATIONS = {
+
+    "erbil_citadel": {
+        "category": "🏛️ Ancient & History",
+        "en": {
+            "name": "🏰 Erbil Citadel",
+            "text": (
+                "🏰 ERBIL CITADEL\n\n"
+                "📍 Destination: Erbil Citadel\n"
+                "🏛️ Type: Ancient heritage site\n"
+                "🚗 From Erbil center: 0 km\n"
+                "⏱️ Drive: 0 min\n"
+                "🕐 Visit: about 2 hours\n"
+                "📅 Best months: March–May, October–November\n"
+                "🥾 Difficulty: 🟢 Easy\n"
+                "🚙 Vehicle: Any car\n"
+                "💰 Entrance: Main grounds are free\n\n"
+                "📖 HISTORY\n"
+                "The Erbil Citadel is a huge archaeological mound in "
+                "the center of Erbil. It has been occupied for thousands "
+                "of years and became a UNESCO World Heritage Site in 2014.\n\n"
+                "🤯 DID YOU KNOW?\n"
+                "The citadel stands directly above the modern city center "
+                "and contains archaeological layers from different periods.\n\n"
+                "🎒 BRING\n"
+                "• Comfortable shoes\n"
+                "• Water\n"
+                "• Phone/camera\n"
+                "• Sun protection\n"
+                "• Some cash for nearby places\n\n"
+                "⭐ WHY VISIT?\n"
+                "History + architecture + city views + Qaysari Bazaar."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Erbil+Citadel"
+        },
+        "ku": {
+            "name": "🏰 کۆشکی هەولێر",
+            "text": (
+                "🏰 کۆشکی هەولێر\n\n"
+                "📍 شوێن: کۆشکی هەولێر\n"
+                "🏛️ جۆر: شوێنی مێژوویی\n"
+                "🚗 لە ناوەندی هەولێر: ٠ کیلۆمەتر\n"
+                "⏱️ گەشت: ٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٢ کاتژمێر\n"
+                "📅 باشترین وەرز: بەهار و پاییز\n"
+                "🥾 ئاست: 🟢 ئاسان\n"
+                "🚙 ئۆتۆمبێل: هەر ئۆتۆمبێلێک\n\n"
+                "📖 مێژوو\n"
+                "کۆشکی هەولێر کۆمەڵێک چینە مێژووییە لەسەر گردێکی "
+                "گەورە لە ناوەندی هەولێر. شوێنەکە هەزاران ساڵە "
+                "شوێنی ژیان و نیشتەجێبوون بووە.\n\n"
+                "🤯 دەزانی؟\n"
+                "کۆشکەکە لە دڵی شاری نوێی هەولێرە و لەسەر گردێکی "
+                "مێژوویی دانراوە.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• ئاو\n"
+                "• مۆبایل/کامێرا\n"
+                "• پارێزەری خۆر\n\n"
+                "⭐ بۆچی سەردانی بکەیت؟\n"
+                "مێژوو + تەلارسازی + دیمەنی شار + بازاڕی قەیسەری."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Erbil+Citadel"
+        }
+    },
+
+    "qaysari_bazaar": {
+        "category": "🏛️ Ancient & History",
+        "en": {
+            "name": "🛍️ Qaysari Bazaar",
+            "text": (
+                "🛍️ QAYSARI BAZAAR\n\n"
+                "📍 Destination: Qaysari Bazaar\n"
+                "🏛️ Type: Historic covered market\n"
+                "🚗 From Erbil center: 0 km\n"
+                "🕐 Visit: about 1–2 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n"
+                "🚙 Vehicle: Any car; walking is better\n\n"
+                "📖 HISTORY\n"
+                "Qaysari Bazaar is a traditional covered market "
+                "located beside Erbil Citadel.\n\n"
+                "🤯 DID YOU KNOW?\n"
+                "The market dates back to the early 13th century.\n\n"
+                "🎒 BRING\n"
+                "• Comfortable shoes\n"
+                "• Small cash\n"
+                "• Phone/camera\n\n"
+                "⭐ BEST COMBINATION\n"
+                "Erbil Citadel → Qaysari Bazaar → Mudhafaria Minaret."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Qaysari+Bazaar+Erbil"
+        },
+        "ku": {
+            "name": "🛍️ بازاڕی قەیسەری",
+            "text": (
+                "🛍️ بازاڕی قەیسەری\n\n"
+                "📍 شوێن: بازاڕی قەیسەری\n"
+                "🏛️ جۆر: بازاڕی مێژوویی\n"
+                "🚗 لە ناوەندی هەولێر: ٠ کیلۆمەتر\n"
+                "🕐 ماوەی سەردان: ١–٢ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "📖 مێژوو\n"
+                "بازاڕی قەیسەری بازاڕێکی نەریتی و مێژووییە "
+                "لە تەنیشت کۆشکی هەولێر.\n\n"
+                "🤯 دەزانی؟\n"
+                "بنەمای بازاڕەکە بۆ سەدەی ١٣ دەگەڕێتەوە.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• پارەی کاش\n"
+                "• مۆبایل/کامێرا\n\n"
+                "⭐ پێشنیاری گەشت\n"
+                "کۆشکی هەولێر → بازاڕی قەیسەری → منارەی مظەفەری."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Qaysari+Bazaar+Erbil"
+        }
+    },
+
+    "mudhafaria": {
+        "category": "🏛️ Ancient & History",
+        "en": {
+            "name": "🕌 Mudhafaria Minaret",
+            "text": (
+                "🕌 MUDHAFARIA MINARET\n\n"
+                "📍 Destination: Mudhafaria Minaret\n"
+                "🏛️ Type: Historic minaret\n"
+                "🚗 From Erbil center: about 10 min\n"
+                "🕐 Visit: about 30 minutes\n"
+                "🥾 Difficulty: 🟢 Easy\n\n"
+                "🤯 DID YOU KNOW?\n"
+                "The minaret is approximately 36 metres tall "
+                "and dates from the 13th century.\n\n"
+                "🎒 BRING\n"
+                "• Comfortable shoes\n"
+                "• Phone/camera\n"
+                "• Water in hot weather\n\n"
+                "⭐ GOOD FOR\n"
+                "History, architecture and photography."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Mudhafaria+Minaret+Erbil"
+        },
+        "ku": {
+            "name": "🕌 منارەی مظەفەری",
+            "text": (
+                "🕌 منارەی مظەفەری\n\n"
+                "📍 شوێن: منارەی مظەفەری\n"
+                "🏛️ جۆر: منارەی مێژوویی\n"
+                "🚗 لە ناوەندی هەولێر: نزیکەی ١٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٣٠ خولەک\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "🤯 دەزانی؟\n"
+                "بەرزی منارەکە نزیکەی ٣٦ مەترە و مێژووەکەی "
+                "دەگەڕێتەوە بۆ سەدەی ١٣.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• مۆبایل/کامێرا\n"
+                "• ئاو لە هاوین\n\n"
+                "⭐ باشە بۆ\n"
+                "مێژوو، تەلارسازی و وێنەگرتن."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Mudhafaria+Minaret+Erbil"
+        }
+    },
+
+    "sami_abdulrahman": {
+        "category": "🌳 Nature & Parks",
+        "en": {
+            "name": "🌳 Sami Abdulrahman Park",
+            "text": (
+                "🌳 SAMI ABDULRAHMAN PARK\n\n"
+                "📍 Destination: Sami Abdulrahman Park\n"
+                "🚗 From Erbil center: about 15 min\n"
+                "🕐 Visit: 2–3 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n"
+                "🚙 Vehicle: Any car\n\n"
+                "🌿 WHAT YOU'LL FIND\n"
+                "• Large green spaces\n"
+                "• Two lakes\n"
+                "• Walking areas\n"
+                "• Relaxation areas\n\n"
+                "🎒 BRING\n"
+                "• Water\n"
+                "• Comfortable shoes\n"
+                "• Sun protection\n"
+                "• Picnic items if desired\n\n"
+                "⭐ BEST FOR\n"
+                "Families, walking, relaxing and sunset."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Sami+Abdulrahman+Park+Erbil"
+        },
+        "ku": {
+            "name": "🌳 پارکی سامی عەبدولڕەحمان",
+            "text": (
+                "🌳 پارکی سامی عەبدولڕەحمان\n\n"
+                "📍 شوێن: پارکی سامی عەبدولڕەحمان\n"
+                "🚗 لە ناوەندی هەولێر: نزیکەی ١٥ خولەک\n"
+                "🕐 ماوەی سەردان: ٢–٣ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "🌿 لەوێ چی هەیە؟\n"
+                "• بۆشایی سەوز\n"
+                "• دوو دەریاچە\n"
+                "• شوێنی پیاسە\n"
+                "• شوێنی پشوودان\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• پارێزەری خۆر\n\n"
+                "⭐ باشە بۆ\n"
+                "خێزان، پیاسە، پشوودان و خۆرئاوابوون."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Sami+Abdulrahman+Park+Erbil"
+        }
+    },
+
+    "shanidar_park": {
+        "category": "🌳 Nature & Parks",
+        "en": {
+            "name": "🌳 Shanidar Park",
+            "text": (
+                "🌳 SHANIDAR PARK\n\n"
+                "📍 Destination: Shanidar Park, Erbil\n"
+                "🚗 From Erbil center: about 10 min\n"
+                "🕐 Visit: 1–2 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n\n"
+                "🎒 BRING\n"
+                "• Water\n"
+                "• Comfortable shoes\n"
+                "• Camera\n\n"
+                "⭐ GOOD FOR\n"
+                "Relaxing, walking and family activities."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Shanidar+Park+Erbil"
+        },
+        "ku": {
+            "name": "🌳 پارکی شانەدەر",
+            "text": (
+                "🌳 پارکی شانەدەر\n\n"
+                "📍 شوێن: پارکی شانەدەر، هەولێر\n"
+                "🚗 لە ناوەندی هەولێر: نزیکەی ١٠ خولەک\n"
+                "🕐 ماوەی سەردان: ١–٢ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• کامێرا\n\n"
+                "⭐ باشە بۆ\n"
+                "پشوودان، پیاسە و چاالکی خێزانی."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Shanidar+Park+Erbil"
+        }
+    },
+
+    "shaqlawa": {
+        "category": "🏘️ Towns & Culture",
+        "en": {
+            "name": "🏘️ Shaqlawa",
+            "text": (
+                "🏘️ SHAQLAWA\n\n"
+                "📍 Destination: Shaqlawa\n"
+                "🏔️ Elevation: about 1,066 m\n"
+                "🚗 From Erbil: about 50 km\n"
+                "⏱️ Drive: about 60 min\n"
+                "🕐 Visit: about 3 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n\n"
+                "🌿 WHY GO?\n"
+                "A famous mountain resort below Safeen Mountain, "
+                "known for its cooler climate, valleys and mountain scenery.\n\n"
+                "🎒 BRING\n"
+                "• Water\n"
+                "• Comfortable shoes\n"
+                "• Light jacket for cooler weather\n"
+                "• Camera\n\n"
+                "⭐ BEST FOR\n"
+                "A relaxed day trip from Erbil."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Shaqlawa+Iraq"
+        },
+        "ku": {
+            "name": "🏘️ شەقڵاوە",
+            "text": (
+                "🏘️ شەقڵاوە\n\n"
+                "📍 شوێن: شەقڵاوە\n"
+                "🏔️ بەرزی: نزیکەی ١٠٦٦ مەتر\n"
+                "🚗 لە هەولێرەوە: نزیکەی ٥٠ کیلۆمەتر\n"
+                "⏱️ گەشت: نزیکەی ٦٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٣ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "🌿 بۆچی بچیت؟\n"
+                "شەقڵاوە شوێنێکی گەشتیاریی شاخاوییە لە ژێر "
+                "شاخی سەفین، بە کەشوهەوای خۆش و دیمەنی شاخەکان.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• جلوبەرگی سووک\n"
+                "• کامێرا"
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Shaqlawa+Iraq"
+        }
+    },
+
+    "rawanduz": {
+        "category": "🏔️ Mountains & Canyons",
+        "en": {
+            "name": "🏞️ Rawanduz",
+            "text": (
+                "🏞️ RAWANDUZ\n\n"
+                "📍 Destination: Rawanduz\n"
+                "🚗 From Erbil: about 116 km\n"
+                "⏱️ Drive: about 105 min\n"
+                "🕐 Visit: about 2 hours\n"
+                "📅 Best months: April–October\n"
+                "🥾 Difficulty: 🟢 Easy\n\n"
+                "📖 HISTORY\n"
+                "Rawanduz sits on a rocky ridge between deep river gorges "
+                "and was the capital of the Soran Emirate from 1816 to 1836.\n\n"
+                "🤯 DID YOU KNOW?\n"
+                "The town is surrounded by dramatic mountain peaks "
+                "and is a natural gateway toward Gali Ali Beg and Hamilton Road.\n\n"
+                "🎒 BRING\n"
+                "• Drinking water\n"
+                "• Comfortable shoes\n"
+                "• Camera\n"
+                "• Power bank\n"
+                "• Offline map\n\n"
+                "⚠️ NOTE\n"
+                "Mountain weather can change quickly. Check road conditions "
+                "before travelling in winter."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Rawanduz+Iraq"
+        },
+        "ku": {
+            "name": "🏞️ ڕەواندز",
+            "text": (
+                "🏞️ ڕەواندز\n\n"
+                "📍 شوێن: ڕەواندز\n"
+                "🚗 لە هەولێرەوە: نزیکەی ١١٦ کیلۆمەتر\n"
+                "⏱️ گەشت: نزیکەی ١٠٥ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٢ کاتژمێر\n"
+                "📅 باشترین وەرز: نیسان تا تشرینی یەکەم\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "📖 مێژوو\n"
+                "ڕەواندز لەسەر پشتی بەردینێک لەنێوان دوو کانیۆنی "
+                "قووڵ دانراوە و لە ساڵانی ١٨١٦ تا ١٨٣٦ پایتەختی "
+                "میرنشینی سۆران بووە.\n\n"
+                "🤯 دەزانی؟\n"
+                "شاخە گەورەکان لە هەموو لایەکەوە دەوری شارەکەیان داوە.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• کامێرا\n"
+                "• پاوەربانک\n"
+                "• نەخشەی ئۆفلاین\n\n"
+                "⚠️ تێبینی\n"
+                "کەشوهەوای شاخاویی دەتوانێت بەخێرایی بگۆڕێت."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Rawanduz+Iraq"
+        }
+    },
+
+    "gali_ali_beg": {
+        "category": "💦 Waterfalls & Nature",
+        "en": {
+            "name": "💦 Gali Ali Beg Waterfall",
+            "text": (
+                "💦 GALI ALI BEG WATERFALL\n\n"
+                "📍 Destination: Gali Ali Beg Waterfall\n"
+                "🚗 From Erbil: about 130 km\n"
+                "⏱️ Drive: about 150 min\n"
+                "🕐 Visit: about 1 hour\n"
+                "🥾 Difficulty: 🟢 Easy–Moderate\n"
+                "🚙 Vehicle: Normal car on the main route\n\n"
+                "🏞️ LOCATION\n"
+                "The waterfall is in Rawanduz Gorge along the historic "
+                "Hamilton Road.\n\n"
+                "💧 WATERFALL\n"
+                "The main waterfall is about 12 metres high.\n\n"
+                "🎒 BRING\n"
+                "• Drinking water\n"
+                "• Walking shoes\n"
+                "• Extra clothes if you go near the water\n"
+                "• Sun protection\n"
+                "• Camera\n\n"
+                "⭐ BEST COMBINATION\n"
+                "Rawanduz → Hamilton Road → Gali Ali Beg."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gali+Ali+Beg+Waterfall"
+        },
+        "ku": {
+            "name": "💦 ئاوی گەلی عەلی بەگ",
+            "text": (
+                "💦 ئاوی گەلی عەلی بەگ\n\n"
+                "📍 شوێن: ئاوی گەلی عەلی بەگ\n"
+                "🚗 لە هەولێرەوە: نزیکەی ١٣٠ کیلۆمەتر\n"
+                "⏱️ گەشت: نزیکەی ١٥٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ١ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان–مامناوەند\n"
+                "🚙 ئۆتۆمبێل: ئۆتۆمبێلی ئاسایی بۆ ڕێگای سەرەکی\n\n"
+                "🏞️ شوێن\n"
+                "لە کانیۆنی ڕەواندز و لەسەر ڕێگای مێژوویی هامیلتۆنە.\n\n"
+                "💧 ئاوشار\n"
+                "بەرزی ئاوشارە سەرەکییەکە نزیکەی ١٢ مەترە.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• پێڵاوی گەشت\n"
+                "• جلوبەرگی زیادە ئەگەر نزیک ئاو دەچیت\n"
+                "• پارێزەری خۆر\n"
+                "• کامێرا\n\n"
+                "⭐ گەشتی پێشنیارکراو\n"
+                "ڕەواندز → ڕێگای هامیلتۆن → گەلی عەلی بەگ."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gali+Ali+Beg+Waterfall"
+        }
+    },
+
+    "amadiya": {
+        "category": "🏛️ Ancient & History",
+        "en": {
+            "name": "🏘️ Amedi (Amadiya)",
+            "text": (
+                "🏘️ AMEDI\n\n"
+                "📍 Destination: Amedi\n"
+                "🏔️ Elevation: about 1,400 m\n"
+                "🚗 From Duhok: about 90 min\n"
+                "🕐 Visit: about 3 hours\n"
+                "📅 Best months: April–June, September–October\n"
+                "🥾 Difficulty: 🟢 Easy\n"
+                "🚙 Vehicle: Normal car\n"
+                "💰 Admission: Free\n\n"
+                "📖 HISTORY\n"
+                "Amedi is an ancient hilltop settlement built on a "
+                "flat-topped limestone plateau.\n\n"
+                "🤯 SEE\n"
+                "• Historic Ottoman gate\n"
+                "• Old mosque minaret\n"
+                "• Mountain panoramas\n"
+                "• Ancient rock inscriptions\n\n"
+                "🎒 BRING\n"
+                "• Walking shoes\n"
+                "• Water\n"
+                "• Camera\n"
+                "• Light jacket\n"
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Amedi+Iraq"
+        },
+        "ku": {
+            "name": "🏘️ ئەمێدی",
+            "text": (
+                "🏘️ ئەمێدی\n\n"
+                "📍 شوێن: ئەمێدی\n"
+                "🏔️ بەرزی: نزیکەی ١٤٠٠ مەتر\n"
+                "🚗 لە دهۆکەوە: نزیکەی ٩٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٣ کاتژمێر\n"
+                "📅 باشترین وەرز: نیسان–حوزەیران و ئەیلول–تشرینی یەکەم\n"
+                "🥾 ئاست: 🟢 ئاسان\n"
+                "🚙 ئۆتۆمبێل: ئاسایی\n"
+                "💰 چوونەژوورەوە: بەلاش\n\n"
+                "📖 مێژوو\n"
+                "ئەمێدی شارێکی کۆنی سەر تەختە بەردینێکی بەرزە.\n\n"
+                "🤯 چی ببینیت؟\n"
+                "• دەروازەی مێژوویی\n"
+                "• منارەی مزگەوتی کۆن\n"
+                "• دیمەنی شاخەکان\n"
+                "• نوسینە بەردینە کۆنەکان\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• پێڵاوی گەشت\n"
+                "• ئاو\n"
+                "• کامێرا\n"
+                "• جلوبەرگی سووک"
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Amedi+Iraq"
+        }
+    },
+
+    "sulav": {
+        "category": "💦 Waterfalls & Nature",
+        "en": {
+            "name": "💦 Sulav Springs",
+            "text": (
+                "💦 SULAV SPRINGS\n\n"
+                "📍 Destination: Sulav Springs Resort\n"
+                "🚗 From Duhok: about 90 min\n"
+                "🕐 Visit: about 3 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n"
+                "🚙 Vehicle: Normal car\n\n"
+                "🌿 WHAT YOU GET\n"
+                "Cold mountain springs, green surroundings, "
+                "pine-shaded areas and a relaxing mountain atmosphere.\n\n"
+                "🎒 BRING\n"
+                "• Water\n"
+                "• Comfortable shoes\n"
+                "• Camera\n"
+                "• Light jacket\n\n"
+                "⭐ BEST FOR\n"
+                "Summer trips and relaxing with family."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Sulav+Springs+Resort+Iraq"
+        },
+        "ku": {
+            "name": "💦 سولاڤ",
+            "text": (
+                "💦 سولاڤ\n\n"
+                "📍 شوێن: سولاڤ\n"
+                "🚗 لە دهۆکەوە: نزیکەی ٩٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٣ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n"
+                "🚙 ئۆتۆمبێل: ئاسایی\n\n"
+                "🌿 چی هەیە؟\n"
+                "سەرچاوەی ساردی شاخاویی، دارستان و دیمەنی سروشتی جوان.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• کامێرا\n"
+                "• جلوبەرگی سووک\n\n"
+                "⭐ باشە بۆ\n"
+                "گەشتی هاوین و پشوودان لەگەڵ خێزان."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Sulav+Springs+Resort+Iraq"
+        }
+    },
+
+    "gara": {
+        "category": "🏔️ Mountains & Canyons",
+        "en": {
+            "name": "🏔️ Gara Mountain",
+            "text": (
+                "🏔️ GARA MOUNTAIN\n\n"
+                "📍 Destination: Gara Mountain\n"
+                "🚗 From Duhok: about 105 min\n"
+                "🕐 Suggested visit: about 5 hours\n"
+                "🥾 Difficulty: 🟠 Difficult\n"
+                "🚙 Vehicle: Check road conditions before remote trips\n\n"
+                "🌲 WHAT TO EXPECT\n"
+                "A remote highland massif with oak forests, "
+                "seasonal waterfalls and mountain trails.\n\n"
+                "🎒 BRING\n"
+                "• Plenty of water\n"
+                "• Food/snacks\n"
+                "• Proper hiking shoes\n"
+                "• First-aid kit\n"
+                "• Power bank\n"
+                "• Offline map\n"
+                "• Extra layer\n\n"
+                "🧭 GUIDE\n"
+                "For remote hiking routes, a knowledgeable local guide "
+                "is strongly recommended.\n\n"
+                "⚠️ IMPORTANT\n"
+                "Do not treat unknown spring water as automatically safe."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gara+Mountain+Iraq"
+        },
+        "ku": {
+            "name": "🏔️ شاخی گەرا",
+            "text": (
+                "🏔️ شاخی گەرا\n\n"
+                "📍 شوێن: شاخی گەرا\n"
+                "🚗 لە دهۆکەوە: نزیکەی ١٠٥ خولەک\n"
+                "🕐 ماوەی پێشنیارکراو: نزیکەی ٥ کاتژمێر\n"
+                "🥾 ئاست: 🟠 سەخت\n"
+                "🚙 ئۆتۆمبێل: پێش گەشت دۆخی ڕێگا بپشکنە\n\n"
+                "🌲 چی دەبینیت؟\n"
+                "شاخێکی دوورەدەست بە دارستانی بلوط، "
+                "ئاوشاری وەرزی و ڕێگای شاخاویی.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاوێکی زۆر\n"
+                "• خواردن\n"
+                "• پێڵاوی گەشت\n"
+                "• کۆمەکی یەکەم\n"
+                "• پاوەربانک\n"
+                "• نەخشەی ئۆفلاین\n"
+                "• جلوبەرگی زیادە\n\n"
+                "🧭 ڕێبەر\n"
+                "بۆ ڕێگاکانی دوور، ڕێبەری ناوخۆی شارەزا پێشنیار دەکرێت."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Gara+Mountain+Iraq"
+        }
+    },
+
+    "zawa": {
+        "category": "🏔️ Mountains & Viewpoints",
+        "en": {
+            "name": "🏔️ Zawa Mountain Viewpoint",
+            "text": (
+                "🏔️ ZAWA MOUNTAIN\n\n"
+                "📍 Destination: Zawa Mountain viewpoint\n"
+                "🚗 From Duhok: about 18 min\n"
+                "🕐 Visit: about 1.5 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n"
+                "🚙 Vehicle: Normal car\n\n"
+                "🌆 HIGHLIGHT\n"
+                "A mountain ridge overlooking Duhok and the reservoir.\n\n"
+                "🎒 BRING\n"
+                "• Water\n"
+                "• Camera\n"
+                "• Light jacket\n\n"
+                "⭐ BEST TIME\n"
+                "Late afternoon for mountain and city views."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Zawa+Mountain+Duhok"
+        },
+        "ku": {
+            "name": "🏔️ شاخی زاوا",
+            "text": (
+                "🏔️ شاخی زاوا\n\n"
+                "📍 شوێن: خاڵی دیمەنی شاخی زاوا\n"
+                "🚗 لە دهۆکەوە: نزیکەی ١٨ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ١.٥ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n"
+                "🚙 ئۆتۆمبێل: ئاسایی\n\n"
+                "🌆 تایبەتمەندی\n"
+                "دیمەنێکی فراوانی شاری دهۆک و دەریاچەکە دەدات.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• کامێرا\n"
+                "• جلوبەرگی سووک\n\n"
+                "⭐ باشترین کات\n"
+                "دوای نیوەڕۆ بۆ دیمەنی شار و شاخ."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Zawa+Mountain+Duhok"
+        }
+    },
+
+    "duhok_dam": {
+        "category": "🌊 Lakes & Water",
+        "en": {
+            "name": "🌊 Duhok Dam & Reservoir",
+            "text": (
+                "🌊 DUHOK DAM\n\n"
+                "📍 Destination: Duhok Dam & Reservoir\n"
+                "🚗 From Duhok center: about 12 min\n"
+                "🕐 Visit: about 1.5 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n"
+                "🚙 Vehicle: Normal car\n\n"
+                "🌿 WHAT TO SEE\n"
+                "A mountain reservoir surrounded by hills and pine-covered slopes.\n\n"
+                "🎒 BRING\n"
+                "• Water\n"
+                "• Comfortable shoes\n"
+                "• Camera\n\n"
+                "⭐ BEST FOR\n"
+                "Evening walks and mountain scenery."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Duhok+Dam"
+        },
+        "ku": {
+            "name": "🌊 بەندی ئاوی دهۆک",
+            "text": (
+                "🌊 بەندی ئاوی دهۆک\n\n"
+                "📍 شوێن: بەندی ئاوی دهۆک\n"
+                "🚗 لە ناوەندی دهۆکەوە: نزیکەی ١٢ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ١.٥ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n"
+                "🚙 ئۆتۆمبێل: ئاسایی\n\n"
+                "🌿 چی دەبینیت؟\n"
+                "دەریاچەیەکی شاخاویی کە بە دۆڵ و شاخەکان دەورەدراوە.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• ئاو\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• کامێرا\n\n"
+                "⭐ باشە بۆ\n"
+                "پیاسەی ئێوارە و دیمەنی شاخ."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Duhok+Dam"
+        }
+    },
+
+    "duhok_bazaar": {
+        "category": "🏘️ Towns & Culture",
+        "en": {
+            "name": "🛍️ Duhok Old Bazaar",
+            "text": (
+                "🛍️ DUHOK OLD BAZAAR\n\n"
+                "📍 Destination: Duhok Old Bazaar\n"
+                "🚗 From Duhok center: 0 min\n"
+                "🕐 Visit: about 2 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n\n"
+                "🌿 EXPERIENCE\n"
+                "Explore traditional covered trading lanes, "
+                "local shops, spices, fabrics and traditional food.\n\n"
+                "🎒 BRING\n"
+                "• Comfortable shoes\n"
+                "• Small cash\n"
+                "• Phone/camera\n\n"
+                "⭐ BEST FOR\n"
+                "Local culture, food and photography."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Duhok+Old+Bazaar"
+        },
+        "ku": {
+            "name": "🛍️ بازاڕی کۆنی دهۆک",
+            "text": (
+                "🛍️ بازاڕی کۆنی دهۆک\n\n"
+                "📍 شوێن: بازاڕی کۆنی دهۆک\n"
+                "🚗 لە ناوەندی دهۆکەوە: ٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٢ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "🌿 ئەزموون\n"
+                "لە کۆڵانەکانی بازاڕی کۆن بگەڕێ، "
+                "دوکانە ناوخۆییەکان و خواردنی نەریتی ببینە.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• پارەی کاش\n"
+                "• مۆبایل/کامێرا\n\n"
+                "⭐ باشە بۆ\n"
+                "کەلتوور، خواردن و وێنەگرتن."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Duhok+Old+Bazaar"
+        }
+    },
+
+    "delal_bridge": {
+        "category": "🏛️ Ancient & History",
+        "en": {
+            "name": "🌉 Delal Bridge – Zakho",
+            "text": (
+                "🌉 DELAL BRIDGE\n\n"
+                "📍 Destination: Delal Bridge, Zakho\n"
+                "🚗 From Duhok: about 55 min\n"
+                "🕐 Visit: about 1 hour\n"
+                "🥾 Difficulty: 🟢 Easy\n\n"
+                "🏛️ HISTORY\n"
+                "A historic stone arch bridge crossing the Little Khabur River.\n\n"
+                "🎒 BRING\n"
+                "• Comfortable shoes\n"
+                "• Water\n"
+                "• Camera\n\n"
+                "⭐ BEST FOR\n"
+                "History, architecture and photography."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Delal+Bridge+Zakho"
+        },
+        "ku": {
+            "name": "🌉 پردی دلال – زاخۆ",
+            "text": (
+                "🌉 پردی دلال\n\n"
+                "📍 شوێن: پردی دلال، زاخۆ\n"
+                "🚗 لە دهۆکەوە: نزیکەی ٥٥ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ١ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "🏛️ مێژوو\n"
+                "پردێکی بەردینی مێژووییە کە بەسەر ڕووباری خابووری بچووکدا تێدەپەڕێت.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• ئاو\n"
+                "• کامێرا\n\n"
+                "⭐ باشە بۆ\n"
+                "مێژوو، تەلارسازی و وێنەگرتن."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Delal+Bridge+Zakho"
+        }
+    },
+
+    "akre": {
+        "category": "🏘️ Towns & Culture",
+        "en": {
+            "name": "🏘️ Akre Old Town",
+            "text": (
+                "🏘️ AKRE\n\n"
+                "📍 Destination: Akre\n"
+                "🚗 From Duhok: about 90 min\n"
+                "🕐 Visit: about 3 hours\n"
+                "🥾 Difficulty: 🟡 Moderate\n\n"
+                "🏛️ WHY IT'S SPECIAL\n"
+                "An ancient mountain town built along a dramatic rocky valley, "
+                "with traditional houses and historic character.\n\n"
+                "🎒 BRING\n"
+                "• Walking shoes\n"
+                "• Water\n"
+                "• Camera\n"
+                "• Sun protection\n\n"
+                "⭐ BEST FOR\n"
+                "Historic streets, mountain views and photography."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Akre+Iraq"
+        },
+        "ku": {
+            "name": "🏘️ ئاکرێ",
+            "text": (
+                "🏘️ ئاکرێ\n\n"
+                "📍 شوێن: ئاکرێ\n"
+                "🚗 لە دهۆکەوە: نزیکەی ٩٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٣ کاتژمێر\n"
+                "🥾 ئاست: 🟡 مامناوەند\n\n"
+                "🏛️ بۆچی تایبەتە؟\n"
+                "شارۆچکەیەکی کۆنی شاخاوییە کە بەسەر دۆڵێکی "
+                "بەردین و دیمەنی شاخەکاندا دروست بووە.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• پێڵاوی گەشت\n"
+                "• ئاو\n"
+                "• کامێرا\n"
+                "• پارێزەری خۆر\n\n"
+                "⭐ باشە بۆ\n"
+                "کۆڵانە کۆنەکان، دیمەنی شاخ و وێنەگرتن."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Akre+Iraq"
+        }
+    },
+
+    "lalish": {
+        "category": "🕍 Cultural & Sacred",
+        "en": {
+            "name": "🕍 Lalish",
+            "text": (
+                "🕍 LALISH\n\n"
+                "📍 Destination: Lalish\n"
+                "🚗 From Duhok: about 60 min\n"
+                "🕐 Visit: about 2 hours\n"
+                "🥾 Difficulty: 🟢 Easy\n\n"
+                "🌿 ABOUT\n"
+                "Lalish is a sacred valley and an important religious "
+                "and cultural site of the Yazidi community.\n\n"
+                "🎒 BRING\n"
+                "• Modest and respectful clothing\n"
+                "• Comfortable shoes\n"
+                "• Water\n\n"
+                "⚠️ RESPECT\n"
+                "Follow local customs and instructions when visiting "
+                "religious areas.\n\n"
+                "⭐ BEST FOR\n"
+                "Culture, architecture, history and photography."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Lalish+Iraq"
+        },
+        "ku": {
+            "name": "🕍 لالش",
+            "text": (
+                "🕍 لالش\n\n"
+                "📍 شوێن: لالش\n"
+                "🚗 لە دهۆکەوە: نزیکەی ٦٠ خولەک\n"
+                "🕐 ماوەی سەردان: نزیکەی ٢ کاتژمێر\n"
+                "🥾 ئاست: 🟢 ئاسان\n\n"
+                "🌿 دەربارەی شوێنەکە\n"
+                "لالش دۆڵێکی پیرۆز و شوێنێکی گرنگی ئایینی و "
+                "کەلتوورییە بۆ کۆمەڵگەی ئێزیدی.\n\n"
+                "🎒 پێویستە بهێنیت\n"
+                "• جلوبەرگی گونجاو و ڕێزدار\n"
+                "• پێڵاوی ئاسوودە\n"
+                "• ئاو\n\n"
+                "⚠️ ڕێز\n"
+                "لە کاتی سەرداندا ڕێزی نەریت و ڕێنماییە ناوخۆییەکان بگرە.\n\n"
+                "⭐ باشە بۆ\n"
+                "کەلتوور، تەلارسازی، مێژوو و وێنەگرتن."
+            ),
+            "map": "https://www.google.com/maps/search/?api=1&query=Lalish+Iraq"
+        }
+    }
+}
 
 FACTS = {
     "mountain_belt": {
@@ -1184,6 +2029,57 @@ def mountains_keyboard(lang):
     ])
 
     return InlineKeyboardMarkup(buttons)
+    def locations_keyboard(lang):
+    categories = {}
+
+    for location_id, location in LOCATIONS.items():
+        category = location["category"]
+
+        if category not in categories:
+            categories[category] = []
+
+        categories[category].append(location_id)
+
+    buttons = []
+
+    for category in categories:
+        buttons.append([
+            InlineKeyboardButton(
+                category,
+                callback_data=f"loccat_{category}"
+            )
+        ])
+
+    buttons.append([
+        InlineKeyboardButton(
+            TEXT[lang]["back"],
+            callback_data="back_main"
+        )
+    ])
+
+    return InlineKeyboardMarkup(buttons)
+
+
+def location_category_keyboard(category, lang):
+    buttons = []
+
+    for location_id, location in LOCATIONS.items():
+        if location["category"] == category:
+            buttons.append([
+                InlineKeyboardButton(
+                    location[lang]["name"],
+                    callback_data=f"location_{location_id}"
+                )
+            ])
+
+    buttons.append([
+        InlineKeyboardButton(
+            TEXT[lang]["back"],
+            callback_data="locations"
+        )
+    ])
+
+    return InlineKeyboardMarkup(buttons)
 def cities_keyboard(lang):
     cities = {
         "en": [
@@ -1273,7 +2169,64 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=main_keyboard(new_lang),
         )
         return
+    if data == "locations":
+        title = (
+            "📍 EXPLORE KURDISTAN\n\n"
+            "Choose a type of destination:"
+            if lang == "en"
+            else
+            "📍 کوردستان بگەڕێ\n\n"
+            "جۆری شوێنێک هەڵبژێرە:"
+        )
 
+        await query.edit_message_text(
+            title,
+            reply_markup=locations_keyboard(lang)
+        )
+        return
+
+    if data.startswith("loccat_"):
+        category = data.replace("loccat_", "")
+
+        await query.edit_message_text(
+            category,
+            reply_markup=location_category_keyboard(category, lang)
+        )
+        return
+
+    if data.startswith("location_"):
+        location_id = data.replace("location_", "")
+
+        if location_id not in LOCATIONS:
+            await query.answer("Location not found.")
+            return
+
+        location = LOCATIONS[location_id][lang]
+
+        await query.edit_message_text(
+            location["text"],
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton(
+                        "🗺️ Google Maps",
+                        url=location["map"]
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "📍 Back to Locations",
+                        callback_data="locations"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "🏠 Main Menu",
+                        callback_data="back_main"
+                    )
+                ]
+            ])
+        )
+        return
     # Mountains menu
     if data == "mountains":
         await query.edit_message_text(
