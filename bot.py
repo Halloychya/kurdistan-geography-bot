@@ -1,4 +1,5 @@
 import os
+import random
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -1898,6 +1899,647 @@ FACTS = {
         },
     },
 }
+# =========================
+# GEOGRAPHY QUIZ
+# =========================
+
+QUIZ_QUESTIONS = [
+    {
+        "en": {
+            "question": "Which city is the capital of the Kurdistan Region of Iraq?",
+            "options": ["Erbil", "Duhok", "Halabja", "Zakho"],
+            "answer": "Erbil",
+        },
+        "ku": {
+            "question": "پایتەختی هەرێمی کوردستانی عێراق کام شارە؟",
+            "options": ["هەولێر", "دهۆک", "هەڵەبجە", "زاخۆ"],
+            "answer": "هەولێر",
+        },
+    },
+    {
+        "en": {
+            "question": "Which major river is one of the main tributaries of the Tigris in Kurdistan?",
+            "options": ["Great Zab", "Nile", "Jordan", "Euphrates"],
+            "answer": "Great Zab",
+        },
+        "ku": {
+            "question": "کام ڕووبارێک یەکێکە لە ڕووبارە سەرەکییەکانی پەیوەندیدار بە دیجلە لە کوردستان؟",
+            "options": ["زێی گەورە", "نیل", "ئوردن", "فورات"],
+            "answer": "زێی گەورە",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain is one of the highest peaks in Iraq?",
+            "options": ["Halgurd", "Zawa", "Azmar", "Gara"],
+            "answer": "Halgurd",
+        },
+        "ku": {
+            "question": "کام شاخێک یەکێکە لە بەرزترین لووتکەکانی عێراق؟",
+            "options": ["هەڵگورد", "زاوا", "ئەزمەر", "گارە"],
+            "answer": "هەڵگورد",
+        },
+    },
+    {
+        "en": {
+            "question": "Where is the historic Erbil Citadel located?",
+            "options": ["Erbil", "Duhok", "Zakho", "Akre"],
+            "answer": "Erbil",
+        },
+        "ku": {
+            "question": "قەڵای مێژوویی هەولێر لە کوێیە؟",
+            "options": ["هەولێر", "دهۆک", "زاخۆ", "ئاکرێ"],
+            "answer": "هەولێر",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is the capital of Duhok Governorate?",
+            "options": ["Duhok", "Akre", "Zakho", "Shaqlawa"],
+            "answer": "Duhok",
+        },
+        "ku": {
+            "question": "کام شار پایتەختی پارێزگای دهۆکە؟",
+            "options": ["دهۆک", "ئاکرێ", "زاخۆ", "شەقڵاوە"],
+            "answer": "دهۆک",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain is located near Sulaymaniyah?",
+            "options": ["Azmar", "Halgurd", "Gara", "Korek"],
+            "answer": "Azmar",
+        },
+        "ku": {
+            "question": "کام شاخ لە نزیکی سلێمانییە؟",
+            "options": ["ئەزمەر", "هەڵگورد", "گارە", "کۆڕەک"],
+            "answer": "ئەزمەر",
+        },
+    },
+    {
+        "en": {
+            "question": "Which famous waterfall is near Rawanduz?",
+            "options": ["Gali Ali Beg", "Bekhal", "Sulav", "Akre Falls"],
+            "answer": "Gali Ali Beg",
+        },
+        "ku": {
+            "question": "کام ئاوشارە بەناوبانگە لە نزیکی ڕەواندزە؟",
+            "options": ["گەلی عەلی بەگ", "بێخاڵ", "سولاڤ", "ئاوشاری ئاکرێ"],
+            "answer": "گەلی عەلی بەگ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is famous for Delal Bridge?",
+            "options": ["Zakho", "Erbil", "Halabja", "Duhok"],
+            "answer": "Zakho",
+        },
+        "ku": {
+            "question": "کام شار بە پردی دلال بەناوبانگە؟",
+            "options": ["زاخۆ", "هەولێر", "هەڵەبجە", "دهۆک"],
+            "answer": "زاخۆ",
+        },
+    },
+    {
+        "en": {
+            "question": "Lalish is an important religious and cultural site of which community?",
+            "options": ["Yazidi", "Assyrian", "Armenian", "Turkmen"],
+            "answer": "Yazidi",
+        },
+        "ku": {
+            "question": "لالش شوێنێکی گرنگی ئایینی و کەلتووریی کام کۆمەڵگەیە؟",
+            "options": ["ئێزیدی", "ئاشووری", "ئەرمەنی", "تورکمانی"],
+            "answer": "ئێزیدی",
+        },
+    },
+    {
+        "en": {
+            "question": "Which river is also known as the Diyala?",
+            "options": ["Sirwan", "Khabur", "Tanjero", "Great Zab"],
+            "answer": "Sirwan",
+        },
+        "ku": {
+            "question": "کام ڕووبار بە ناوی دیالەش ناسراوە؟",
+            "options": ["سیروان", "خابور", "تانجەڕۆ", "زێی گەورە"],
+            "answer": "سیروان",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is located in the east of the Kurdistan Region and is famous for its history?",
+            "options": ["Halabja", "Zakho", "Duhok", "Akre"],
+            "answer": "Halabja",
+        },
+        "ku": {
+            "question": "کام شار لە ڕۆژهەڵاتی هەرێمی کوردستانە و بە مێژووی خۆی بەناوبانگە؟",
+            "options": ["هەڵەبجە", "زاخۆ", "دهۆک", "ئاکرێ"],
+            "answer": "هەڵەبجە",
+        },
+    },
+    {
+        "en": {
+            "question": "Which large reservoir is located near Sulaymaniyah?",
+            "options": ["Dukan Lake", "Duhok Dam", "Van Lake", "Urmia Lake"],
+            "answer": "Dukan Lake",
+        },
+        "ku": {
+            "question": "کام دەریاچەی دەستکردی گەورە لە نزیکی سلێمانییە؟",
+            "options": ["دەریاچەی دوکان", "بەندی ئاوی دهۆک", "دەریاچەی وان", "دەریاچەی ورمێ"],
+            "answer": "دەریاچەی دوکان",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain is famous near Shaqlawa?",
+            "options": ["Safeen", "Azmar", "Halgurd", "Gara"],
+            "answer": "Safeen",
+        },
+        "ku": {
+            "question": "کام شاخ لە نزیکی شەقڵاوە بەناوبانگە؟",
+            "options": ["سەفین", "ئەزمەر", "هەڵگورد", "گارە"],
+            "answer": "سەفین",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is famous for its old mountain-town character?",
+            "options": ["Akre", "Erbil", "Halabja", "Duhok"],
+            "answer": "Akre",
+        },
+        "ku": {
+            "question": "کام شار بە کۆڵان و کەسایەتی شارە شاخاوییە کۆنەکەی بەناوبانگە؟",
+            "options": ["ئاکرێ", "هەولێر", "هەڵەبجە", "دهۆک"],
+            "answer": "ئاکرێ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which river flows through the Duhok area?",
+            "options": ["Khabur", "Nile", "Jordan", "Euphrates"],
+            "answer": "Khabur",
+        },
+        "ku": {
+            "question": "کام ڕووبار بە ناوچەی دهۆکدا تێدەپەڕێت؟",
+            "options": ["خابور", "نیل", "ئوردن", "فورات"],
+            "answer": "خابور",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain is associated with Rawanduz?",
+            "options": ["Korek", "Azmar", "Zawa", "Safeen"],
+            "answer": "Korek",
+        },
+        "ku": {
+            "question": "کام شاخ پەیوەندی بە ڕەواندزەوە هەیە؟",
+            "options": ["کۆڕەک", "ئەزمەر", "زاوا", "سەفین"],
+            "answer": "کۆڕەک",
+        },
+    },
+    {
+        "en": {
+            "question": "What type of landscape dominates much of Kurdistan?",
+            "options": ["Mountains and valleys", "Desert only", "Flat coastline", "Tropical rainforest"],
+            "answer": "Mountains and valleys",
+        },
+        "ku": {
+            "question": "کام جۆری دیمەن لە زۆربەی کوردستاندا زاڵە؟",
+            "options": ["شاخ و دۆڵ", "تەنها بیابان", "کەناری تەخت", "دارستانی گەرمسیری"],
+            "answer": "شاخ و دۆڵ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which major river is known as the Tigris in English?",
+            "options": ["Dicle", "Firat", "Sirwan", "Khabur"],
+            "answer": "Dicle",
+        },
+        "ku": {
+            "question": "کام ڕووبار بە ناوی دیجلە ناسراوە؟",
+            "options": ["دیجلە", "فورات", "سیروان", "خابور"],
+            "answer": "دیجلە",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain is near Duhok city?",
+            "options": ["Zawa", "Azmar", "Halgurd", "Süphan"],
+            "answer": "Zawa",
+        },
+        "ku": {
+            "question": "کام شاخ لە نزیکی شاری دهۆکە؟",
+            "options": ["زاوا", "ئەزمەر", "هەڵگورد", "سوفان"],
+            "answer": "زاوا",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is known as an important historic city in northern Kurdistan?",
+            "options": ["Akre", "Halabja", "Erbil", "Sulaymaniyah"],
+            "answer": "Akre",
+        },
+        "ku": {
+            "question": "کام شار بە شارێکی مێژوویی گرنگ لە باکووری کوردستان ناسراوە؟",
+            "options": ["ئاکرێ", "هەڵەبجە", "هەولێر", "سلێمانی"],
+            "answer": "ئاکرێ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which river is called the Little Zab?",
+            "options": ["Little Zab", "Great Zab", "Sirwan", "Tanjero"],
+            "answer": "Little Zab",
+        },
+        "ku": {
+            "question": "کام ڕووبار بە زێی بچووک ناسراوە؟",
+            "options": ["زێی بچووک", "زێی گەورە", "سیروان", "تانجەڕۆ"],
+            "answer": "زێی بچووک",
+        },
+    },
+    {
+        "en": {
+            "question": "Which lake is famous in the Sulaymaniyah region?",
+            "options": ["Dukan Lake", "Lake Van", "Lake Urmia", "Lake Tuz"],
+            "answer": "Dukan Lake",
+        },
+        "ku": {
+            "question": "کام دەریاچە لە ناوچەی سلێمانی بەناوبانگە؟",
+            "options": ["دەریاچەی دوکان", "دەریاچەی وان", "دەریاچەی ورمێ", "دەریاچەی توز"],
+            "answer": "دەریاچەی دوکان",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is famous for the Erbil Citadel?",
+            "options": ["Erbil", "Zakho", "Akre", "Duhok"],
+            "answer": "Erbil",
+        },
+        "ku": {
+            "question": "کام شار بە قەڵای هەولێر بەناوبانگە؟",
+            "options": ["هەولێر", "زاخۆ", "ئاکرێ", "دهۆک"],
+            "answer": "هەولێر",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain range is strongly associated with Kurdistan?",
+            "options": ["Zagros", "Alps", "Andes", "Himalayas"],
+            "answer": "Zagros",
+        },
+        "ku": {
+            "question": "کام زنجیرە شاخە بە شێوەیەکی زۆر پەیوەندی بە کوردستانەوە هەیە؟",
+            "options": ["زاگرۆس", "ئەڵپ", "ئەندیز", "هیمالایا"],
+            "answer": "زاگرۆس",
+        },
+    },
+    {
+        "en": {
+            "question": "Which waterfall is located near Shaqlawa?",
+            "options": ["Bekhal", "Gali Ali Beg", "Niagara", "Victoria"],
+            "answer": "Bekhal",
+        },
+        "ku": {
+            "question": "کام ئاوشار لە نزیکی شەقڵاوەیە؟",
+            "options": ["بێخاڵ", "گەلی عەلی بەگ", "نیاگارا", "ڤیکتۆریا"],
+            "answer": "بێخاڵ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is located near the Turkish border?",
+            "options": ["Zakho", "Halabja", "Sulaymaniyah", "Shaqlawa"],
+            "answer": "Zakho",
+        },
+        "ku": {
+            "question": "کام شار لە نزیکی سنووری تورکیایە؟",
+            "options": ["زاخۆ", "هەڵەبجە", "سلێمانی", "شەقڵاوە"],
+            "answer": "زاخۆ",
+        },
+    },
+    {
+        "en": {
+            "question": "What feeds many rivers in the Kurdistan highlands?",
+            "options": ["Snow and rainfall", "Ocean tides", "Desert sand", "Volcanic lava"],
+            "answer": "Snow and rainfall",
+        },
+        "ku": {
+            "question": "چی سەرچاوەی ئاو بۆ زۆرێک لە ڕووبارەکانی ناوچە شاخاوییەکانی کوردستانە؟",
+            "options": ["بەفر و باران", "شەپۆلی دەریا", "خۆڵی بیابان", "لاوەی گڕکان"],
+            "answer": "بەفر و باران",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is the capital of Sulaymaniyah Governorate?",
+            "options": ["Sulaymaniyah", "Erbil", "Duhok", "Zakho"],
+            "answer": "Sulaymaniyah",
+        },
+        "ku": {
+            "question": "پایتەختی پارێزگای سلێمانی کام شارە؟",
+            "options": ["سلێمانی", "هەولێر", "دهۆک", "زاخۆ"],
+            "answer": "سلێمانی",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain is famous for its location near Erbil?",
+            "options": ["Safeen", "Azmar", "Halgurd", "Gara"],
+            "answer": "Safeen",
+        },
+        "ku": {
+            "question": "کام شاخ بە نزیکی هەولێر بەناوبانگە؟",
+            "options": ["سەفین", "ئەزمەر", "هەڵگورد", "گارە"],
+            "answer": "سەفین",
+        },
+    },
+    {
+        "en": {
+            "question": "Which ancient town is located in a dramatic mountain setting?",
+            "options": ["Akre", "Erbil", "Halabja", "Duhok"],
+            "answer": "Akre",
+        },
+        "ku": {
+            "question": "کام شارۆچکەیەکی کۆن لە ناو دیمەنێکی شاخاویی سەرنجڕاکێشە؟",
+            "options": ["ئاکرێ", "هەولێر", "هەڵەبجە", "دهۆک"],
+            "answer": "ئاکرێ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which river is one of the famous rivers of Kurdistan?",
+            "options": ["Tanjero", "Amazon", "Danube", "Rhine"],
+            "answer": "Tanjero",
+        },
+        "ku": {
+            "question": "کام ڕووبار یەکێکە لە ڕووبارە بەناوبانگەکانی کوردستان؟",
+            "options": ["تانجەڕۆ", "ئامازۆن", "دانوب", "ڕاین"],
+            "answer": "تانجەڕۆ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which place is a sacred valley associated with the Yazidi religion?",
+            "options": ["Lalish", "Akre", "Shaqlawa", "Zakho"],
+            "answer": "Lalish",
+        },
+        "ku": {
+            "question": "کام شوێن دۆڵێکی پیرۆزە و پەیوەندی بە ئایینی ئێزیدییەوە هەیە؟",
+            "options": ["لالش", "ئاکرێ", "شەقڵاوە", "زاخۆ"],
+            "answer": "لالش",
+        },
+    },
+    {
+        "en": {
+            "question": "Which river is known as the Great Zab?",
+            "options": ["Great Zab", "Little Zab", "Sirwan", "Murat"],
+            "answer": "Great Zab",
+        },
+        "ku": {
+            "question": "کام ڕووبار بە زێی گەورە ناسراوە؟",
+            "options": ["زێی گەورە", "زێی بچووک", "سیروان", "مورات"],
+            "answer": "زێی گەورە",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is known for its traditional old bazaar in this bot?",
+            "options": ["Duhok", "Erbil", "Halabja", "Rawanduz"],
+            "answer": "Duhok",
+        },
+        "ku": {
+            "question": "کام شار لە ئەم بۆتەدا بە بازاڕی کۆنی خۆی ناسراوە؟",
+            "options": ["دهۆک", "هەولێر", "هەڵەبجە", "ڕەواندز"],
+            "answer": "دهۆک",
+        },
+    },
+    {
+        "en": {
+            "question": "What is a major geographical feature of Kurdistan?",
+            "options": ["Mountain ranges", "Coral reefs", "Polar ice sheets", "Savanna only"],
+            "answer": "Mountain ranges",
+        },
+        "ku": {
+            "question": "تایبەتمەندییەکی سەرەکی جوگرافیای کوردستان چییە؟",
+            "options": ["زنجیرە شاخەکان", "ریفە مرجانییەکان", "بەستەڵەخی قەڵەمەری", "تەنها ساڤانا"],
+            "answer": "زنجیرە شاخەکان",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is famous for its historic citadel in the center?",
+            "options": ["Erbil", "Zakho", "Duhok", "Halabja"],
+            "answer": "Erbil",
+        },
+        "ku": {
+            "question": "کام شار بە قەڵای مێژوویی لە ناوەڕاستی شارەکەی بەناوبانگە؟",
+            "options": ["هەولێر", "زاخۆ", "دهۆک", "هەڵەبجە"],
+            "answer": "هەولێر",
+        },
+    },
+    {
+        "en": {
+            "question": "Which river is associated with Darbandikhan?",
+            "options": ["Sirwan", "Great Zab", "Khabur", "Tigris"],
+            "answer": "Sirwan",
+        },
+        "ku": {
+            "question": "کام ڕووبار پەیوەندی بە دەربەندیخانەوە هەیە؟",
+            "options": ["سیروان", "زێی گەورە", "خابور", "دیجلە"],
+            "answer": "سیروان",
+        },
+    },
+    {
+        "en": {
+            "question": "Which location is famous for its historic stone bridge near Zakho?",
+            "options": ["Delal Bridge", "Golden Gate", "Brooklyn Bridge", "Tower Bridge"],
+            "answer": "Delal Bridge",
+        },
+        "ku": {
+            "question": "کام شوێن بە پردی بەردینی مێژوویی لە نزیکی زاخۆ بەناوبانگە؟",
+            "options": ["پردی دلال", "گۆڵدن گەیت", "پردی برۆکلین", "تاوەر بریج"],
+            "answer": "پردی دلال",
+        },
+    },
+    {
+        "en": {
+            "question": "Which mountain is located in the Erbil area?",
+            "options": ["Safeen", "Azmar", "Zawa", "Halgurd"],
+            "answer": "Safeen",
+        },
+        "ku": {
+            "question": "کام شاخ لە ناوچەی هەولێرە؟",
+            "options": ["سەفین", "ئەزمەر", "زاوا", "هەڵگورد"],
+            "answer": "سەفین",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is famous for its mountain scenery and old streets?",
+            "options": ["Akre", "Halabja", "Erbil", "Zakho"],
+            "answer": "Akre",
+        },
+        "ku": {
+            "question": "کام شار بە دیمەنی شاخ و کۆڵانە کۆنەکانی بەناوبانگە؟",
+            "options": ["ئاکرێ", "هەڵەبجە", "هەولێر", "زاخۆ"],
+            "answer": "ئاکرێ",
+        },
+    },
+    {
+        "en": {
+            "question": "Which water body is located near Duhok city?",
+            "options": ["Duhok Dam", "Dukan Lake", "Lake Van", "Lake Urmia"],
+            "answer": "Duhok Dam",
+        },
+        "ku": {
+            "question": "کام شوێنی ئاوی لە نزیکی شاری دهۆکە؟",
+            "options": ["بەندی ئاوی دهۆک", "دەریاچەی دوکان", "دەریاچەی وان", "دەریاچەی ورمێ"],
+            "answer": "بەندی ئاوی دهۆک",
+        },
+    },
+    {
+        "en": {
+            "question": "Which city is famous for the Rawanduz area?",
+            "options": ["Rawanduz", "Halabja", "Duhok", "Zakho"],
+            "answer": "Rawanduz",
+        },
+        "ku": {
+            "question": "ناوچەی ڕەواندز بە کام شارەوە ناسراوە؟",
+            "options": ["ڕەواندز", "هەڵەبجە", "دهۆک", "زاخۆ"],
+            "answer": "ڕەواندز",
+        },
+    },
+]
+
+
+def quiz_keyboard(question, lang):
+    options = list(question[lang]["options"])
+    random.shuffle(options)
+
+    buttons = []
+
+    for index, option in enumerate(options):
+        buttons.append([
+            InlineKeyboardButton(
+                option,
+                callback_data=f"quiz_answer_{index}"
+            )
+        ])
+
+    # Save the shuffled answers so the correct answer
+    # still works after randomizing the buttons.
+    return options, InlineKeyboardMarkup(buttons)
+
+
+def quiz_menu_keyboard(lang):
+    if lang == "en":
+        return InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton(
+                    "🎯 Start Quiz",
+                    callback_data="quiz_start"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "🏠 Main Menu",
+                    callback_data="back_main"
+                )
+            ],
+        ])
+
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(
+                "🎯 دەستپێکردنی تاقیکردنەوە",
+                callback_data="quiz_start"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "🏠 سەرەکی",
+                callback_data="back_main"
+            )
+        ],
+    ])
+
+
+def quiz_result_keyboard(lang):
+    if lang == "en":
+        return InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton(
+                    "🔄 Play Again",
+                    callback_data="quiz_start"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "🏠 Main Menu",
+                    callback_data="back_main"
+                )
+            ],
+        ])
+
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(
+                "🔄 دووبارە یاری بکە",
+                callback_data="quiz_start"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "🏠 سەرەکی",
+                callback_data="back_main"
+            )
+        ],
+    ])
+
+
+async def show_quiz_question(query, context):
+    quiz = context.user_data["quiz"]
+    lang = quiz["language"]
+
+    question_number = quiz["current"] + 1
+    question = quiz["questions"][quiz["current"]]
+
+    options, keyboard = quiz_keyboard(question, lang)
+
+    # Save THIS question's randomized button order.
+    quiz["current_options"] = options
+
+    if lang == "en":
+        text = (
+            f"🎯 KURDISTAN GEOGRAPHY QUIZ\n\n"
+            f"Question {question_number}/15\n\n"
+            f"{question['en']['question']}"
+        )
+    else:
+        text = (
+            f"🎯 تاقیکردنەوەی جوگرافیای کوردستان\n\n"
+            f"پرسیاری {question_number}/15\n\n"
+            f"{question['ku']['question']}"
+        )
+
+    await query.edit_message_text(
+        text,
+        reply_markup=keyboard
+    )
+
+
+async def start_quiz(query, context, lang):
+    # Choose 15 DIFFERENT questions randomly from the full bank.
+    selected_questions = random.sample(QUIZ_QUESTIONS, 15)
+
+    context.user_data["quiz"] = {
+        "questions": selected_questions,
+        "current": 0,
+        "score": 0,
+        "language": lang,
+        "current_options": [],
+    }
+
+    await show_quiz_question(query, context)
 def language_keyboard():
     return InlineKeyboardMarkup([
         [
@@ -1909,6 +2551,8 @@ def language_keyboard():
 
 def main_keyboard(lang):
     t = TEXT[lang]
+
+    quiz_name = "🎯 Geography Quiz" if lang == "en" else "🎯 تاقیکردنەوەی جوگرافیا"
 
     return InlineKeyboardMarkup([
         [
@@ -1922,6 +2566,12 @@ def main_keyboard(lang):
         [
             InlineKeyboardButton(t["locations"], callback_data="locations"),
             InlineKeyboardButton(t["facts"], callback_data="facts"),
+        ],
+        [
+            InlineKeyboardButton(
+                quiz_name,
+                callback_data="quiz_menu"
+            )
         ],
         [
             InlineKeyboardButton(t["language"], callback_data="language"),
@@ -2157,6 +2807,137 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     data = query.data
     lang = context.user_data.get("language", "en")
+        # =========================
+    # QUIZ MENU
+    # =========================
+
+    if data == "quiz_menu":
+        quiz_text = (
+            "🎯 KURDISTAN GEOGRAPHY QUIZ\n\n"
+            "Test your knowledge of Kurdistan geography!\n\n"
+            "• 15 questions\n"
+            "• Random questions every game\n"
+            "• Random answer order\n"
+            "• Score at the end"
+            if lang == "en"
+            else
+            "🎯 تاقیکردنەوەی جوگرافیای کوردستان\n\n"
+            "زانیاریت لە جوگرافیای کوردستان تاقی بکەرەوە!\n\n"
+            "• ١٥ پرسیار\n"
+            "• پرسیاری جیاواز لە هەر یارییەکدا\n"
+            "• ڕیزبەندی وەڵامەکان بە شێوەی هەڕەمەکی\n"
+            "• نمرە لە کۆتاییدا"
+        )
+
+        await query.edit_message_text(
+            quiz_text,
+            reply_markup=quiz_menu_keyboard(lang)
+        )
+        return
+
+    # =========================
+    # START / RESTART QUIZ
+    # =========================
+
+    if data == "quiz_start":
+        await start_quiz(query, context, lang)
+        return
+
+    # =========================
+    # QUIZ ANSWER
+    # =========================
+
+    if data.startswith("quiz_answer_"):
+        quiz = context.user_data.get("quiz")
+
+        if not quiz:
+            await query.answer(
+                "Quiz session expired. Please start again.",
+                show_alert=True
+            )
+            return
+
+        answer_index = int(data.replace("quiz_answer_", ""))
+
+        options = quiz["current_options"]
+
+        if answer_index >= len(options):
+            await query.answer("Invalid answer.", show_alert=True)
+            return
+
+        selected_answer = options[answer_index]
+
+        current_question = quiz["questions"][quiz["current"]]
+
+        correct_answer = current_question[
+            quiz["language"]
+        ]["answer"]
+
+        if selected_answer == correct_answer:
+            quiz["score"] += 1
+            is_correct = True
+        else:
+            is_correct = False
+
+        # Prevent pressing the same answer button again.
+        await query.answer(
+            "✅ Correct!" if is_correct else "❌ Wrong!"
+        )
+
+        quiz["current"] += 1
+
+        # More questions remain.
+        if quiz["current"] < 15:
+            await show_quiz_question(query, context)
+            return
+
+        # =========================
+        # QUIZ FINISHED
+        # =========================
+
+        score = quiz["score"]
+
+        if quiz["language"] == "en":
+            if score >= 13:
+                message = "🏆 Excellent!"
+            elif score >= 10:
+                message = "👏 Great job!"
+            elif score >= 7:
+                message = "👍 Good job!"
+            else:
+                message = "💪 Keep learning!"
+
+            result_text = (
+                "🎯 KURDISTAN GEOGRAPHY QUIZ\n\n"
+                "🏁 QUIZ COMPLETE!\n\n"
+                f"⭐ Your score: {score}/15\n\n"
+                f"{message}"
+            )
+
+        else:
+            if score >= 13:
+                message = "🏆 زۆر نایاب!"
+            elif score >= 10:
+                message = "👏 زۆر باشە!"
+            elif score >= 7:
+                message = "👍 باشە!"
+            else:
+                message = "💪 بەردەوام بە لە فێربوون!"
+
+            result_text = (
+                "🎯 تاقیکردنەوەی جوگرافیای کوردستان\n\n"
+                "🏁 تاقیکردنەوەکە تەواو بوو!\n\n"
+                f"⭐ نمرەکەت: {score}/15\n\n"
+                f"{message}"
+            )
+
+        await query.edit_message_text(
+            result_text,
+            reply_markup=quiz_result_keyboard(
+                quiz["language"]
+            )
+        )
+        return
 
     # Language
     if data.startswith("lang_"):
