@@ -4,11 +4,14 @@ import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+
 from telegram.ext import (
     Application,
     CommandHandler,
     CallbackQueryHandler,
+    MessageHandler,
     ContextTypes,
+    filters,
 )
 
 TOKEN = os.environ["BOT_TOKEN"]
@@ -3519,6 +3522,80 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
+# =========================
+# SEARCH PLACE MESSAGE HANDLER
+# =========================
+
+async def search_place_message(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE
+):
+    if not context.user_data.get("searching_place"):
+        return
+
+    if not update.message or not update.message.text:
+        return
+
+    place_name = update.message.text.strip()
+    lang = context.user_data.get("language", "en")
+
+    if not place_name:
+        await update.message.reply_text(
+            "Please enter a place name."
+            if lang == "en"
+            else "تکایە ناوی شوێنێک بنووسە."
+        )
+        return
+
+    context.user_data["searching_place"] = False
+
+    from urllib.parse import quote_plus
+
+    maps_url = (
+        "https://www.google.com/maps/search/?api=1&query="
+        + quote_plus(place_name + ", Kurdistan Region, Iraq")
+    )
+
+    if lang == "en":
+        result_text = (
+            f"🔎 Your search: {place_name}\n\n"
+            "Open Google Maps to explore this place."
+        )
+        maps_label = "🗺️ Open Google Maps"
+        again_label = "🔎 Search Again"
+    else:
+        result_text = (
+            f"🔎 گەڕانت: {place_name}\n\n"
+            "بۆ بینینی شوێنەکە لە نەخشەی گووگڵ بکەرەوە."
+        )
+        maps_label = "🗺️ کردنەوەی نەخشەی گووگڵ"
+        again_label = "🔎 گەڕانەوە"
+
+    keyboard = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(
+                maps_label,
+                url=maps_url
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                again_label,
+                callback_data="search_place"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                TEXT[lang]["back"],
+                callback_data="back_main"
+            )
+        ]
+    ])
+
+    await update.message.reply_text(
+        result_text,
+        reply_markup=keyboard
+    )
 
 # =========================
 # RENDER HEALTH SERVER
@@ -3582,6 +3659,12 @@ def main():
         )
     )
 
+    app.add_handler(
+        MessageHandler(
+            filters.TEXT & ~filters.COMMAND,
+            search_place_message
+        )
+    )
     print(
         "Kurdistan Geography Bot is running..."
     )
