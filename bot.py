@@ -26,6 +26,7 @@ TEXT = {
         "nature": "🏞️ Natural Places",
         "locations": "📍 Locations",
         "facts": "📚 Geography Facts",
+        "search": "🔎 Search for a Place",
         "language": "🌐 Language",
         "choose_city": "🏙️ Choose a city:",
         "back": "🔙 Back",
@@ -39,6 +40,7 @@ TEXT = {
         "nature": "🏞️ شوێنە سروشتییەکان",
         "locations": "📍 شوێنەکان",
         "facts": "📚 زانیاری جوگرافی",
+        "search": "🔎 گەڕان بۆ شوێنێک",
         "language": "🌐 زمان",
         "choose_city": "🏙️ شارێک هەڵبژێرە:",
         "back": "🔙 گەڕانەوە",
@@ -2585,6 +2587,13 @@ def main_keyboard(lang):
             InlineKeyboardButton(
                 quiz_name,
                 callback_data="quiz_menu"
+            )
+        ],
+        
+        [
+            InlineKeyboardButton(
+                t["search"],
+                callback_data="search_place"
             )
         ],
         [
