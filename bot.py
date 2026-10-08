@@ -2911,9 +2911,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    data = query.data
 
-    # Always get the user's current language
+    data = query.data
     lang = context.user_data.get("language", "en")
 
     # =========================
@@ -2952,15 +2951,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if data == "quiz_start":
         await query.answer()
-
-        # Use the current saved language
-        lang = context.user_data.get("language", "en")
-
-        await start_quiz(
-            query,
-            context,
-            lang
-        )
+        await start_quiz(query, context, lang)
         return
 
     # =========================
@@ -3023,10 +3014,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
 
         answer_index = int(
-            data.replace(
-                "quiz_answer_",
-                ""
-            )
+            data.replace("quiz_answer_", "")
         )
 
         options = quiz["current_options"]
@@ -3048,7 +3036,6 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if selected_answer == correct_answer:
             quiz["score"] += 1
-
             answer_message = (
                 "✅ Correct!"
                 if quiz["language"] == "en"
@@ -3130,37 +3117,25 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("lang_"):
         await query.answer()
 
-        new_lang = data.replace(
-            "lang_",
-            "",
-            1
-        )
+        new_lang = data.replace("lang_", "")
 
         if new_lang not in ["en", "ku"]:
             new_lang = "en"
 
-        # SAVE LANGUAGE PERMANENTLY FOR THIS SESSION
         context.user_data["language"] = new_lang
 
         await query.edit_message_text(
             TEXT[new_lang]["welcome"],
-            reply_markup=main_keyboard(new_lang)
+            reply_markup=main_keyboard(new_lang),
         )
-
         return
 
     # =========================
-    # LOCATIONS
+    # 
     # =========================
 
     if data == "locations":
         await query.answer()
-
-        # Re-read saved language
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
 
         title = (
             "📍 EXPLORE KURDISTAN\n\n"
@@ -3175,7 +3150,6 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             title,
             reply_markup=locations_keyboard(lang)
         )
-
         return
 
     # =========================
@@ -3185,103 +3159,25 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("loccat_"):
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
-        category = data.replace(
-            "loccat_",
-            "",
-            1
-        )
-
-        # Kurdish category names
-        category_names = {
-            "🏛️ Ancient & History": {
-                "en": "🏛️ Ancient & History",
-                "ku": "🏛️ شوێنە مێژووییەکان",
-            },
-            "🌳 Nature & Parks": {
-                "en": "🌳 Nature & Parks",
-                "ku": "🌳 سروشت و پارکەکان",
-            },
-            "🏘️ Towns & Culture": {
-                "en": "🏘️ Towns & Culture",
-                "ku": "🏘️ شارۆچکە و کەلتوور",
-            },
-            "🏔️ Mountains & Canyons": {
-                "en": "🏔️ Mountains & Canyons",
-                "ku": "🏔️ شاخەکان و کانیۆنەکان",
-            },
-            "💦 Waterfalls & Nature": {
-                "en": "💦 Waterfalls & Nature",
-                "ku": "💦 ئاوشار و سروشت",
-            },
-            "🏔️ Mountains & Viewpoints": {
-                "en": "🏔️ Mountains & Viewpoints",
-                "ku": "🏔️ شاخ و خاڵەکانی دیمەن",
-            },
-            "🌊 Lakes & Water": {
-                "en": "🌊 Lakes & Water",
-                "ku": "🌊 دەریاچە و ئاو",
-            },
-            "🕍 Cultural & Sacred": {
-                "en": "🕍 Cultural & Sacred",
-                "ku": "🕍 کەلتووری و پیرۆز",
-            },
-        }
-
-        category_title = category_names.get(
-            category,
-            {}
-        ).get(
-            lang,
-            category
-        )
+        category = data.replace("loccat_", "")
 
         await query.edit_message_text(
-            category_title,
+            category,
             reply_markup=location_category_keyboard(
                 category,
                 lang
             )
         )
-
         return
 
     # =========================
     # INDIVIDUAL LOCATION
     # =========================
 
-    # Support BOTH callback formats:
-    # location_xxx
-    # loc_xxx
-
-    if (
-        data.startswith("location_")
-        or data.startswith("loc_")
-    ):
-
+    if data.startswith("location_"):
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
-        if data.startswith("location_"):
-            location_id = data.replace(
-                "location_",
-                "",
-                1
-            )
-        else:
-            location_id = data.replace(
-                "loc_",
-                "",
-                1
-            )
+        location_id = data.replace("location_", "")
 
         if location_id not in LOCATIONS:
             await query.answer(
@@ -3290,43 +3186,31 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        location = LOCATIONS[
-            location_id
-        ][lang]
-
-        if lang == "en":
-            maps_text = "🗺️ Google Maps"
-            back_text = "📍 Back to Locations"
-            main_text = "🏠 Main Menu"
-        else:
-            maps_text = "🗺️ گووگڵ مێپس"
-            back_text = "📍 گەڕانەوە بۆ شوێنەکان"
-            main_text = "🏠 سەرەکی"
+        location = LOCATIONS[location_id][lang]
 
         await query.edit_message_text(
             location["text"],
             reply_markup=InlineKeyboardMarkup([
                 [
                     InlineKeyboardButton(
-                        maps_text,
+                        "🗺️ Google Maps",
                         url=location["map"]
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        back_text,
+                        "📍 Back to Locations",
                         callback_data="locations"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        main_text,
+                        "🏠 Main Menu",
                         callback_data="back_main"
                     )
                 ]
             ])
         )
-
         return
 
     # =========================
@@ -3336,23 +3220,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data == "mountains":
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
-        title = (
+        await query.edit_message_text(
             "⛰️ Choose a mountain:"
             if lang == "en"
             else
-            "⛰️ چیاێک هەڵبژێرە:"
+            "⛰️ چیاێک هەڵبژێرە:",
+            reply_markup=mountains_keyboard(lang),
         )
-
-        await query.edit_message_text(
-            title,
-            reply_markup=mountains_keyboard(lang)
-        )
-
         return
 
     # =========================
@@ -3362,15 +3236,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("mountain_"):
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         mountain_id = data.replace(
             "mountain_",
-            "",
-            1
+            ""
         )
 
         if mountain_id not in MOUNTAINS:
@@ -3380,17 +3248,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        mountain = MOUNTAINS[
-            mountain_id
-        ][lang]
-
-        if lang == "en":
-            maps_text = "📍 Google Maps"
-        else:
-            maps_text = "📍 گووگڵ مێپس"
+        mountain = MOUNTAINS[mountain_id][lang]
 
         if "photo" in mountain:
-
             with open(
                 mountain["photo"],
                 "rb"
@@ -3402,7 +3262,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     reply_markup=InlineKeyboardMarkup([
                         [
                             InlineKeyboardButton(
-                                maps_text,
+                                "📍 Google Maps",
                                 url=mountain["map"]
                             )
                         ],
@@ -3414,15 +3274,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         ]
                     ])
                 )
-
         else:
-
             await query.edit_message_text(
                 mountain["text"],
                 reply_markup=InlineKeyboardMarkup([
                     [
                         InlineKeyboardButton(
-                            maps_text,
+                            "📍 Google Maps",
                             url=mountain["map"]
                         )
                     ],
@@ -3444,23 +3302,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data == "rivers":
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
-        title = (
+        await query.edit_message_text(
             "🌊 Choose a river or water place:"
             if lang == "en"
             else
-            "🌊 ڕووبار یان شوێنی ئاوی هەڵبژێرە:"
+            "🌊 ڕووبار یان شوێنی ئاوی هەڵبژێرە:",
+            reply_markup=rivers_keyboard(lang),
         )
-
-        await query.edit_message_text(
-            title,
-            reply_markup=rivers_keyboard(lang)
-        )
-
         return
 
     # =========================
@@ -3470,15 +3318,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("river_"):
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         river_id = data.replace(
             "river_",
-            "",
-            1
+            ""
         )
 
         if river_id not in RIVERS:
@@ -3488,21 +3330,14 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        river = RIVERS[
-            river_id
-        ][lang]
-
-        if lang == "en":
-            maps_text = "📍 Google Maps"
-        else:
-            maps_text = "📍 گووگڵ مێپس"
+        river = RIVERS[river_id][lang]
 
         await query.edit_message_text(
             river["text"],
             reply_markup=InlineKeyboardMarkup([
                 [
                     InlineKeyboardButton(
-                        maps_text,
+                        "📍 Google Maps",
                         url=river["map"]
                     )
                 ],
@@ -3512,9 +3347,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         callback_data="rivers"
                     )
                 ]
-            ])
+            ]),
         )
-
         return
 
     # =========================
@@ -3524,16 +3358,10 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data == "cities":
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         await query.edit_message_text(
             TEXT[lang]["choose_city"],
-            reply_markup=cities_keyboard(lang)
+            reply_markup=cities_keyboard(lang),
         )
-
         return
 
     # =========================
@@ -3543,15 +3371,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("city_"):
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         city_id = data.replace(
             "city_",
-            "",
-            1
+            ""
         )
 
         if city_id not in CITIES:
@@ -3561,18 +3383,15 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        city = CITIES[
-            city_id
-        ][lang]
+        city = CITIES[city_id][lang]
 
         await query.edit_message_text(
             city["text"],
             reply_markup=city_keyboard(
                 city_id,
                 lang
-            )
+            ),
         )
-
         return
 
     # =========================
@@ -3582,15 +3401,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data == "facts":
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         keyboard = []
 
         for fact_id, fact in FACTS.items():
-
             keyboard.append([
                 InlineKeyboardButton(
                     fact[lang]["title"],
@@ -3605,20 +3418,15 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
         ])
 
-        title = (
+        await query.edit_message_text(
             "📚 Choose a geography fact:"
             if lang == "en"
             else
-            "📚 زانیارییەکی جوگرافی هەڵبژێرە:"
-        )
-
-        await query.edit_message_text(
-            title,
+            "📚 زانیارییەکی جوگرافی هەڵبژێرە:",
             reply_markup=InlineKeyboardMarkup(
                 keyboard
-            )
+            ),
         )
-
         return
 
     # =========================
@@ -3628,15 +3436,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("fact_"):
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         fact_id = data.replace(
             "fact_",
-            "",
-            1
+            ""
         )
 
         if fact_id not in FACTS:
@@ -3646,9 +3448,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        fact = FACTS[
-            fact_id
-        ][lang]
+        fact = FACTS[fact_id][lang]
 
         await query.edit_message_text(
             f"{fact['title']}\n\n{fact['text']}",
@@ -3659,9 +3459,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         callback_data="facts"
                     )
                 ]
-            ])
+            ]),
         )
-
         return
 
     # =========================
@@ -3671,18 +3470,10 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data == "back_main":
         await query.answer()
 
-        # IMPORTANT:
-        # Never force English here.
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         await query.edit_message_text(
             TEXT[lang]["welcome"],
-            reply_markup=main_keyboard(lang)
+            reply_markup=main_keyboard(lang),
         )
-
         return
 
     # =========================
@@ -3692,14 +3483,81 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data == "language":
         await query.answer()
 
-        lang = context.user_data.get(
-            "language",
-            "en"
-        )
-
         await query.edit_message_text(
             TEXT[lang]["choose"],
-            reply_markup=language_keyboard()
+            reply_markup=language_keyboard(),
+        )
+        return
+
+
+# =========================
+# RENDER HEALTH SERVER
+# =========================
+
+class HealthHandler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+
+        self.wfile.write(
+            b"Kurdistan Geography Bot is running!"
         )
 
+    def log_message(self, format, *args):
         return
+
+
+def run_health_server():
+    port = int(
+        os.environ.get(
+            "PORT",
+            10000
+        )
+    )
+
+    server = HTTPServer(
+        ("0.0.0.0", port),
+        HealthHandler
+    )
+
+    server.serve_forever()
+
+
+# =========================
+# MAIN
+# =========================
+
+def main():
+
+    health_thread = threading.Thread(
+        target=run_health_server,
+        daemon=True
+    )
+
+    health_thread.start()
+
+    app = Application.builder().token(TOKEN).build()
+
+    app.add_handler(
+        CommandHandler(
+            "start",
+            start
+        )
+    )
+
+    app.add_handler(
+        CallbackQueryHandler(
+            button
+        )
+    )
+
+    print(
+        "Kurdistan Geography Bot is running..."
+    )
+
+    app.run_polling()
+
+
+if __name__ == "__main__":
+    main()
