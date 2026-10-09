@@ -3166,7 +3166,166 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
     # 
     # =========================
+    # =========================
+    # FOUR SEASONS GUIDE
+    # =========================
 
+    if data == "nature":
+        await query.answer()
+
+        seasons_text = (
+            "🌍 KURDISTAN: FOUR SEASONS\n\n"
+            "Discover unusual natural and historical places.\n"
+            "Choose a season to explore:\n\n"
+            "🌸 Spring — green valleys and ancient sites\n"
+            "☀️ Summer — highlands and forest escapes\n"
+            "🍂 Autumn — heritage and scenic landscapes\n"
+            "❄️ Winter — mountain scenery and cultural trips"
+            if lang == "en"
+            else
+            "🌍 کوردستان: چوار وەرز\n\n"
+            "شوێنە سروشتی و مێژووییە تایبەتەکان بدۆزەرەوە.\n"
+            "وەرزێک هەڵبژێرە:\n\n"
+            "🌸 بەهار — دۆڵی سەوز و شوێنی مێژوویی\n"
+            "☀️ هاوین — ناوچە بەرزەکان و دارستان\n"
+            "🍂 پاییز — مێژوو و دیمەنی جوان\n"
+            "❄️ زستان — دیمەنی چیا و شوێنی کولتووری"
+        )
+
+        seasons_keyboard = InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton(
+                    "🌸 Spring" if lang == "en" else "🌸 بەهار",
+                    callback_data="season_spring"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "☀️ Summer" if lang == "en" else "☀️ هاوین",
+                    callback_data="season_summer"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "🍂 Autumn" if lang == "en" else "🍂 پاییز",
+                    callback_data="season_autumn"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "❄️ Winter" if lang == "en" else "❄️ زستان",
+                    callback_data="season_winter"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    TEXT[lang]["back"],
+                    callback_data="back_main"
+                )
+            ]
+        ])
+
+        await query.edit_message_text(
+            seasons_text,
+            reply_markup=seasons_keyboard
+        )
+        return
+        
+    # =========================
+    # FOUR SEASONS DESTINATIONS
+    # =========================
+
+    SEASON_PLACES = {
+        "spring": [
+            ("🌿 Barzan Valley", "Barzan Valley, Kurdistan Region, Iraq"),
+            ("🏞️ Zawita Forest", "Zawita, Duhok, Iraq"),
+            ("🌊 Ahmed Awa", "Ahmed Awa Waterfall, Halabja, Iraq"),
+            ("⛰️ Gali Ali Beg", "Gali Ali Beg Waterfall, Kurdistan Region, Iraq"),
+            ("🏛️ Shanidar Cave", "Shanidar Cave, Bradost, Iraq"),
+        ],
+        "summer": [
+            ("🌲 Sarsink", "Sarsink, Duhok, Iraq"),
+            ("⛰️ Gara Mountain", "Mount Gara, Duhok, Iraq"),
+            ("🌄 Amedi Cliffs", "Amedi, Duhok, Iraq"),
+            ("🌳 Zawa Mountain", "Zawa Mountain, Duhok, Iraq"),
+            ("🏞️ Rawanduz Gorge", "Rawanduz Gorge, Erbil, Iraq"),
+        ],
+        "autumn": [
+            ("🍂 Akre", "Akre, Duhok, Iraq"),
+            ("🏛️ Khanzad Castle", "Khanzad Castle, Erbil, Iraq"),
+            ("🏰 Sherwana Castle", "Sherwana Castle, Kalar, Iraq"),
+            ("🪨 Qizqapan Cave", "Qizqapan Cave, Sulaymaniyah, Iraq"),
+            ("🌄 Barzan Valley", "Barzan Valley, Kurdistan Region, Iraq"),
+        ],
+        "winter": [
+            ("🏙️ Erbil Citadel", "Erbil Citadel, Erbil, Iraq"),
+            ("🏛️ Shanidar Cave area", "Shanidar Cave, Bradost, Iraq"),
+            ("🌊 Dukan Lake", "Dukan Lake, Sulaymaniyah, Iraq"),
+            ("🏞️ Duhok Dam", "Duhok Dam, Duhok, Iraq"),
+            ("🏰 Amedi", "Amedi, Duhok, Iraq"),
+        ],
+    }
+
+    if data.startswith("season_"):
+        await query.answer()
+
+        season = data.replace("season_", "", 1)
+        places = SEASON_PLACES.get(season, [])
+
+        season_names = {
+            "spring": ("🌸 Spring", "🌸 بەهار"),
+            "summer": ("☀️ Summer", "☀️ هاوین"),
+            "autumn": ("🍂 Autumn", "🍂 پاییز"),
+            "winter": ("❄️ Winter", "❄️ زستان"),
+        }
+
+        season_title = season_names.get(
+            season, ("Natural Places", "شوێنە سروشتییەکان")
+        )[0 if lang == "en" else 1]
+
+        buttons = []
+
+        for place_name, map_query in places:
+            map_url = (
+                "https://www.google.com/maps/search/?api=1&query="
+                + map_query.replace(" ", "+")
+            )
+
+            buttons.append([
+                InlineKeyboardButton(
+                    place_name,
+                    url=map_url
+                )
+            ])
+
+        buttons.append([
+            InlineKeyboardButton(
+                "⬅️ Back to Seasons" if lang == "en"
+                else "⬅️ گەڕانەوە بۆ وەرزەکان",
+                callback_data="nature"
+            )
+        ])
+
+        buttons.append([
+            InlineKeyboardButton(
+                TEXT[lang]["back"],
+                callback_data="back_main"
+            )
+        ])
+
+        await query.edit_message_text(
+            (
+                f"{season_title}\n\n"
+                + (
+                    "Explore these destinations. Tap a place to open Google Maps."
+                    if lang == "en"
+                    else
+                    "ئەم شوێنانە بدۆزەرەوە. لەسەر ناوی شوێنێک دابگرە بۆ کردنەوەی Google Maps."
+                )
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+        return
     if data == "locations":
         await query.answer()
 
