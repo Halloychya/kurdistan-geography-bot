@@ -3235,60 +3235,50 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # FOUR SEASONS DESTINATIONS
     # =========================
 
-
     SEASON_PLACES = {
         "spring": [
-            ("🌊 Gali Ali Beg Waterfall", "Gali Ali Beg Waterfall, Kurdistan Region, Iraq"),
-            ("💧 Bekhal Waterfall", "Bekhal Waterfall, Kurdistan Region, Iraq"),
-            ("🏞️ Rawanduz Gorge", "Rawanduz Gorge, Erbil, Iraq"),
             ("🌿 Barzan Valley", "Barzan Valley, Kurdistan Region, Iraq"),
-            ("🏛️ Shanidar Cave", "Shanidar Cave, Erbil Governorate, Iraq"),
+            ("🏞️ Zawita Forest", "Zawita, Duhok, Iraq"),
             ("🌊 Ahmed Awa", "Ahmed Awa Waterfall, Halabja, Iraq"),
-            ("🏞️ Dukan Lake", "Dukan Lake, Sulaymaniyah Governorate, Iraq"),
-            ("⛰️ Gara Mountain", "Gara Mountain, Amadiya, Iraq"),
-            ("🚡 Korek Mountain", "Korek Mountain, Erbil Governorate, Iraq"),
-            ("🏘️ Amedi", "Amedi, Duhok Governorate, Iraq"),
+            ("⛰️ Gali Ali Beg", "Gali Ali Beg Waterfall, Kurdistan Region, Iraq"),
+            ("🏛️ Shanidar Cave", "Shanidar Cave, Bradost, Iraq"),
         ],
-
         "summer": [
-            ("🌲 Sulav Springs", "Sulav Springs Resort, Amadiya, Iraq"),
-            ("🌳 Sarsink", "Sarsink, Duhok Governorate, Iraq"),
-            ("⛰️ Zawa Mountain", "Zawa Mountain, Duhok, Iraq"),
-            ("🏘️ Shaqlawa", "Shaqlawa, Erbil Governorate, Iraq"),
-            ("🚡 Korek Mountain", "Korek Mountain, Erbil Governorate, Iraq"),
-            ("🌿 Gara Mountain", "Gara Mountain, Amadiya, Iraq"),
-            ("🌊 Duhok Dam", "Duhok Dam, Duhok, Iraq"),
-            ("🏞️ Amedi Highlands", "Amedi, Duhok Governorate, Iraq"),
-            ("🌊 Dukan Lake", "Dukan Lake, Sulaymaniyah Governorate, Iraq"),
-            ("🌳 Zawita", "Zawita, Duhok Governorate, Iraq"),
+            ("🌲 Sarsink", "Sarsink, Duhok, Iraq"),
+            ("⛰️ Gara Mountain", "Mount Gara, Duhok, Iraq"),
+            ("🌄 Amedi Cliffs", "Amedi, Duhok, Iraq"),
+            ("🌳 Zawa Mountain", "Zawa Mountain, Duhok, Iraq"),
+            ("🏞️ Rawanduz Gorge", "Rawanduz Gorge, Erbil, Iraq"),
         ],
-
         "autumn": [
-            ("🍂 Akre Old Town", "Akre, Duhok Governorate, Iraq"),
-            ("🏘️ Amedi Old Town", "Amedi, Duhok Governorate, Iraq"),
-            ("🏰 Erbil Citadel", "Erbil Citadel, Erbil, Iraq"),
-            ("🏛️ Khanzad Castle", "Khanzad Castle, Erbil Governorate, Iraq"),
+            ("🍂 Akre", "Akre, Duhok, Iraq"),
+            ("🏛️ Khanzad Castle", "Khanzad Castle, Erbil, Iraq"),
             ("🏰 Sherwana Castle", "Sherwana Castle, Kalar, Iraq"),
-            ("🪨 Qizqapan Archaeological Site", "Qizqapan archaeological site, Sulaymaniyah Governorate, Iraq"),
-            ("🌉 Delal Bridge", "Delal Bridge, Zakho, Iraq"),
-            ("🌿 Barzan Valley", "Barzan Valley, Kurdistan Region, Iraq"),
-            ("🏛️ Shanidar Cave", "Shanidar Cave, Erbil Governorate, Iraq"),
-            ("🌄 Rawanduz Gorge", "Rawanduz Gorge, Erbil, Iraq"),
+            ("🪨 Qizqapan Cave", "Qizqapan Cave, Sulaymaniyah, Iraq"),
+            ("🌄 Barzan Valley", "Barzan Valley, Kurdistan Region, Iraq"),
         ],
-
         "winter": [
-            ("🏰 Erbil Citadel", "Erbil Citadel, Erbil, Iraq"),
-            ("🛍️ Qaysari Bazaar", "Qaysari Bazaar, Erbil, Iraq"),
-            ("🕌 Mudhafaria Minaret", "Mudhafaria Minaret, Erbil, Iraq"),
-            ("🌳 Sami Abdulrahman Park", "Sami Abdulrahman Park, Erbil, Iraq"),
-            ("🌊 Shanidar Park", "Shanidar Park, Erbil, Iraq"),
-            ("🛍️ Duhok Old Bazaar", "Duhok Old Bazaar, Duhok, Iraq"),
-            ("🌉 Delal Bridge", "Delal Bridge, Zakho, Iraq"),
-            ("🏘️ Amedi", "Amedi, Duhok Governorate, Iraq"),
-            ("🏰 Khanzad Castle", "Khanzad Castle, Erbil Governorate, Iraq"),
-            ("🌊 Duhok Dam", "Duhok Dam, Duhok, Iraq"),
+            ("🏙️ Erbil Citadel", "Erbil Citadel, Erbil, Iraq"),
+            ("🏛️ Shanidar Cave area", "Shanidar Cave, Bradost, Iraq"),
+            ("🌊 Dukan Lake", "Dukan Lake, Sulaymaniyah, Iraq"),
+            ("🏞️ Duhok Dam", "Duhok Dam, Duhok, Iraq"),
+            ("🏰 Amedi", "Amedi, Duhok, Iraq"),
         ],
     }
+
+    if data.startswith("season_"):
+        await query.answer()
+
+        season = data.replace("season_", "", 1)
+        places = SEASON_PLACES.get(season, [])
+
+        season_names = {
+            "spring": ("🌸 Spring", "🌸 بەهار"),
+            "summer": ("☀️ Summer", "☀️ هاوین"),
+            "autumn": ("🍂 Autumn", "🍂 پاییز"),
+            "winter": ("❄️ Winter", "❄️ زستان"),
+        }
+
         season_title = season_names.get(
             season, ("Natural Places", "شوێنە سروشتییەکان")
         )[0 if lang == "en" else 1]
