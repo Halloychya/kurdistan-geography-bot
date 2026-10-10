@@ -3071,7 +3071,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         options = quiz["current_options"]
 
-                if answer_index >= len(options):
+        if answer_index >= len(options):
             await safe_query_answer(
                 query,
                 "Invalid answer.",
