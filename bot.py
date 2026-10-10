@@ -1,4 +1,5 @@
 import os
+from telegram.error import BadRequest
 import random
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -2921,6 +2922,22 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+
+async def safe_query_answer(query, *args, **kwargs):
+    try:
+        await query.answer(*args, **kwargs)
+    except BadRequest as error:
+        error_text = str(error).lower()
+        if (
+            "query is too old" in error_text
+            or "query id is invalid" in error_text
+            or "response timeout expired" in error_text
+        ):
+            return
+        raise
+
+
+
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
 
@@ -2932,7 +2949,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "search_place":
-        await query.answer()
+        await safe_query_answer(query)
 
         context.user_data["searching_place"] = True
 
@@ -2953,7 +2970,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "quiz_menu":
-        await query.answer()
+        await safe_query_answer(query)
 
         quiz_text = (
             "🎯 KURDISTAN GEOGRAPHY QUIZ\n\n"
@@ -2983,7 +3000,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "quiz_start":
-        await query.answer()
+        await safe_query_answer(query)
         await start_quiz(query, context, lang)
         return
 
@@ -2995,13 +3012,14 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         quiz = context.user_data.get("quiz")
 
         if not quiz:
-            await query.answer(
+            await safe_query_answer(
+                query,
                 "No active quiz.",
                 show_alert=True
             )
             return
 
-        await query.answer()
+        await safe_query_answer(query)
 
         score = quiz["score"]
         current = quiz["current"]
@@ -3040,7 +3058,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         quiz = context.user_data.get("quiz")
 
         if not quiz:
-            await query.answer(
+            await safe_query_answer(
+                query,
                 "Quiz session expired. Please start again.",
                 show_alert=True
             )
@@ -3052,8 +3071,9 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         options = quiz["current_options"]
 
-        if answer_index >= len(options):
-            await query.answer(
+                if answer_index >= len(options):
+            await safe_query_answer(
+                query,
                 "Invalid answer.",
                 show_alert=True
             )
@@ -3081,7 +3101,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 else "❌ هەڵەیە!"
             )
 
-        await query.answer(answer_message)
+        await safe_query_answer(query, answer_message)
 
         quiz["current"] += 1
 
@@ -3148,7 +3168,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data.startswith("lang_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         new_lang = data.replace("lang_", "")
 
@@ -3171,7 +3191,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "nature":
-        await query.answer()
+        await safe_query_answer(query)
 
         seasons_text = (
             "🌍 KURDISTAN: FOUR SEASONS\n\n"
@@ -3267,7 +3287,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     }
 
     if data.startswith("season_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         season = data.replace("season_", "", 1)
         places = SEASON_PLACES.get(season, [])
@@ -3327,7 +3347,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
     if data == "locations":
-        await query.answer()
+        await safe_query_answer(query)
 
         title = (
             "📍 EXPLORE KURDISTAN\n\n"
@@ -3349,7 +3369,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data.startswith("loccat_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         category = data.replace("loccat_", "")
 
@@ -3367,12 +3387,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data.startswith("location_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         location_id = data.replace("location_", "")
 
         if location_id not in LOCATIONS:
-            await query.answer(
+            await safe_query_answer(
+                query,
                 "Location not found.",
                 show_alert=True
             )
@@ -3410,7 +3431,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "mountains":
-        await query.answer()
+        await safe_query_answer(query)
 
         await query.edit_message_text(
             "⛰️ Choose a mountain:"
@@ -3426,7 +3447,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data.startswith("mountain_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         mountain_id = data.replace(
             "mountain_",
@@ -3434,7 +3455,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         if mountain_id not in MOUNTAINS:
-            await query.answer(
+            await safe_query_answer(
+                query,
                 "Mountain not found.",
                 show_alert=True
             )
@@ -3492,7 +3514,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "rivers":
-        await query.answer()
+        await safe_query_answer(query)
 
         await query.edit_message_text(
             "🌊 Choose a river or water place:"
@@ -3508,7 +3530,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data.startswith("river_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         river_id = data.replace(
             "river_",
@@ -3516,7 +3538,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         if river_id not in RIVERS:
-            await query.answer(
+            await safe_query_answer(
+                query,
                 "River not found.",
                 show_alert=True
             )
@@ -3548,7 +3571,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "cities":
-        await query.answer()
+        await safe_query_answer(query)
 
         await query.edit_message_text(
             TEXT[lang]["choose_city"],
@@ -3561,18 +3584,18 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data.startswith("city_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         city_id = data.replace(
             "city_",
             ""
         )
 
-        if city_id not in CITIES:
-            await query.answer(
-                "City not found.",
-                show_alert=True
-            )
+        await safe_query_answer(
+    query,
+    "City not found.",
+    show_alert=True
+       )
             return
 
         city = CITIES[city_id][lang]
@@ -3591,8 +3614,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "facts":
-        await query.answer()
-
+        await safe_query_answer(query)
         keyboard = []
 
         for fact_id, fact in FACTS.items():
@@ -3626,7 +3648,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data.startswith("fact_"):
-        await query.answer()
+        await safe_query_answer(query)
 
         fact_id = data.replace(
             "fact_",
@@ -3634,7 +3656,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         if fact_id not in FACTS:
-            await query.answer(
+            await safe_query_answer(
+                query,
                 "Fact not found.",
                 show_alert=True
             )
@@ -3660,7 +3683,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "back_main":
-        await query.answer()
+        await safe_query_answer(query)
 
         await query.edit_message_text(
             TEXT[lang]["welcome"],
@@ -3673,7 +3696,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =========================
 
     if data == "language":
-        await query.answer()
+        await safe_query_answer(query)
 
         await query.edit_message_text(
             TEXT[lang]["choose"],
