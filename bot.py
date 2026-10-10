@@ -2982,18 +2982,36 @@ def city_keyboard(city_id, lang):
 
 
 
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     global START_VISITS
 
-    
-    if update.effective_user:
-        user = update.effective_user
+    user = update.effective_user
 
-        VISITOR_IDS[user.id] = {
-            "name": user.full_name,
-            "username": user.username or "No username",
-            "id": user.id,
-        }
+    if user:
+        try:
+            await save_visitor(user)
+
+            VISITOR_IDS[user.id] = {
+                "name": user.full_name,
+                "username": user.username or "No username",
+                "id": user.id,
+            }
+
+            START_VISITS += 1
+
+        except Exception:
+            print("Failed to save visitor to database.")
+            import traceback
+            traceback.print_exc()
+
+    context.user_data["language"] = "en"
+
+    await update.effective_message.reply_text(
+        "🌍 Kurdistan Geography\n\n"
+        "🌐 Choose your language / زمان هەڵبژێرە:",
+        reply_markup=language_keyboard(),
+    )
 
 
     START_VISITS += 1
@@ -4017,6 +4035,7 @@ async def handle_shared_location(
     )
 
 
+
 async def stats_command(
     update: Update,
     context: ContextTypes.DEFAULT_TYPE,
@@ -4030,46 +4049,85 @@ async def stats_command(
         )
         return
 
-    total_users = len(VISITOR_IDS)
+    try:
+        database_url = os.environ["DATABASE_URL"]
 
-    report = (
-        "🔐 KURDISTAN GEO INTELLIGENCE\n"
-        "━━━━━━━━━━━━━━━━━━━━\n"
-        "📊 PRIVATE ANALYTICS REPORT\n\n"
-        f"👥 Unique visitors: {total_users}\n"
-        f"🚀 Total /start visits: {START_VISITS}\n\n"
-        "👤 VISITOR DIRECTORY\n"
-        "━━━━━━━━━━━━━━━━━━━━\n"
-    )
+        async with await psycopg.AsyncConnection.connect(
+            database_url
+        ) as conn:
+            async with conn.cursor() as cur:
+                await cur.execute(
+                    """
+                    SELECT
+                        telegram_id,
+                        full_name,
+                        username,
+                        start_visits,
+                        first_seen,
+                        last_seen
+                    FROM public.bot_visitors
+                    ORDER BY last_seen DESC
+                    """
+                )
+                visitors = await cur.fetchall()
 
-    if not VISITOR_IDS:
-        report += "\nNo visitors recorded yet."
-    else:
-        for number, user in enumerate(
-            VISITOR_IDS.values(), start=1
-        ):
-            report += (
-                f"\n#{number:03d} {user['name']}\n"
-                f"   Username: @{user['username']}\n"
-                f"   Telegram ID: {user['id']}\n"
-            )
+                await cur.execute(
+                    """
+                    SELECT COALESCE(SUM(start_visits), 0)
+                    FROM public.bot_visitors
+                    """
+                )
+                total_starts = (await cur.fetchone())[0]
 
-    # Telegram messages have a length limit.
-    # Split large reports into safe-sized messages.
-    chunks = []
-    current_chunk = ""
+        report = (
+            "🔐 KURDISTAN GEO INTELLIGENCE\n"
+            "━━━━━━━━━━━━━━━━━━━━\n"
+            "📊 PRIVATE ANALYTICS REPORT\n\n"
+            f"👥 Unique visitors: {len(visitors)}\n"
+            f"🚀 Total /start visits: {total_starts}\n\n"
+            "👤 VISITOR DIRECTORY\n"
+            "━━━━━━━━━━━━━━━━━━━━\n"
+        )
 
-    for line in report.splitlines(keepends=True):
-        if len(current_chunk) + len(line) > 3500:
+        if not visitors:
+            report += "\nNo visitors recorded yet."
+        else:
+            for number, visitor in enumerate(visitors, start=1):
+                telegram_id, name, username, visits, first_seen, last_seen = visitor
+
+                report += (
+                    f"\n#{number:03d} {name}\n"
+                    f"   Username: @{username or 'No username'}\n"
+                    f"   Telegram ID: {telegram_id}\n"
+                    f"   /start visits: {visits}\n"
+                    f"   First seen: {first_seen:%Y-%m-%d %H:%M UTC}\n"
+                    f"   Last seen: {last_seen:%Y-%m-%d %H:%M UTC}\n"
+                )
+
+        chunks = []
+        current_chunk = ""
+
+        for line in report.splitlines(keepends=True):
+            if len(current_chunk) + len(line) > 3500:
+                chunks.append(current_chunk)
+                current_chunk = ""
+            current_chunk += line
+
+        if current_chunk:
             chunks.append(current_chunk)
-            current_chunk = ""
-        current_chunk += line
 
-    if current_chunk:
-        chunks.append(current_chunk)
+        for chunk in chunks:
+            await update.effective_message.reply_text(chunk)
 
-    for chunk in chunks:
-        await update.effective_message.reply_text(chunk)
+    except Exception:
+        print("Failed to load statistics from database.")
+        import traceback
+        traceback.print_exc()
+
+        await update.effective_message.reply_text(
+            "⚠️ Could not load statistics. Please check the Render logs."
+        )
+
 
 
 def main():
