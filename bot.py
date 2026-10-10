@@ -20,7 +20,9 @@ from telegram.ext import (
     ContextTypes,
     filters,
 )
-
+OWNER_ID =1291521545
+VISITOR_IDS = set()
+START_VISITS = 0
 TOKEN = os.environ["BOT_TOKEN"]
 
 
