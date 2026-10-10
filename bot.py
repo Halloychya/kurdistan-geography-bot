@@ -1,6 +1,7 @@
 import os
 from telegram.error import BadRequest
 import random
+import asyncpg
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -2956,19 +2957,58 @@ def city_keyboard(city_id, lang):
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     global START_VISITS
 
-    
-    if update.effective_user:
-        user = update.effective_user
+    user = update.effective_user
 
+    if user:
         VISITOR_IDS[user.id] = {
             "name": user.full_name,
             "username": user.username or "No username",
             "id": user.id,
         }
 
+        database_url = os.getenv("DATABASE_URL")
+
+        if database_url:
+            conn = None
+
+            try:
+                conn = await asyncpg.connect(
+                    database_url,
+                    ssl="require",
+                    timeout=15,
+                )
+
+                await conn.execute(
+                    """
+                    INSERT INTO public.bot_visitors
+                        (telegram_id, full_name, username,
+                         start_visits, first_seen, last_seen)
+                    VALUES ($1, $2, $3, 1, NOW(), NOW())
+                    ON CONFLICT (telegram_id)
+                    DO UPDATE SET
+                        full_name = EXCLUDED.full_name,
+                        username = EXCLUDED.username,
+                        start_visits =
+                            bot_visitors.start_visits + 1,
+                        last_seen = NOW()
+                    """,
+                    user.id,
+                    user.full_name,
+                    user.username,
+                )
+
+                print(f"Visitor saved to database: {user.id}")
+
+            except Exception as e:
+                print(f"Visitor database error: {e}")
+
+            finally:
+                if conn is not None:
+                    await conn.close()
+        else:
+            print("DATABASE_URL is missing from Render.")
 
     START_VISITS += 1
-
     context.user_data["language"] = "en"
 
     await update.message.reply_text(
@@ -2976,7 +3016,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🌐 Choose your language / زمان هەڵبژێرە:",
         reply_markup=language_keyboard(),
     )
-
 
 
 
