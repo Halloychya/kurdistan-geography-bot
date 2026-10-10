@@ -2575,6 +2575,34 @@ async def show_quiz_question(query, context):
     )
 
 
+    
+async def save_visitor(user):
+    database_url = os.environ["DATABASE_URL"]
+
+    async with await psycopg.AsyncConnection.connect(
+        database_url
+    ) as conn:
+        async with conn.cursor() as cur:
+            await cur.execute(
+                """
+                INSERT INTO public.bot_visitors
+                    (telegram_id, full_name, username, start_visits)
+                VALUES (%s, %s, %s, 1)
+                ON CONFLICT (telegram_id)
+                DO UPDATE SET
+                    full_name = EXCLUDED.full_name,
+                    username = EXCLUDED.username,
+                    start_visits =
+                        public.bot_visitors.start_visits + 1,
+                    last_seen = NOW()
+                """,
+                (
+                    user.id,
+                    user.full_name,
+                    user.username,
+                ),
+            )
+
 async def start_quiz(query, context, lang):
     # Choose 15 DIFFERENT questions randomly from the full bank.
     selected_questions = random.sample(QUIZ_QUESTIONS, 15)
