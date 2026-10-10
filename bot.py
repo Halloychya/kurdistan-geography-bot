@@ -3970,6 +3970,27 @@ async def handle_shared_location(
         disable_web_page_preview=True,
     )
 
+async def stats_command(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE,
+):
+    if not update.effective_user:
+        return
+
+    if update.effective_user.id != OWNER_ID:
+        await update.effective_message.reply_text(
+            "⛔ You are not authorized to view these statistics."
+        )
+        return
+
+    total_users = len(VISITOR_IDS)
+
+    await update.effective_message.reply_text(
+        "🔒 PRIVATE BOT STATISTICS\n\n"
+        f"👥 Unique visitors: {total_users}\n"
+        f"🚀 Total /start visits: {START_VISITS}"
+    )
+
 def main():
 
     health_thread = threading.Thread(
@@ -3987,7 +4008,12 @@ def main():
             start
         )
     )
-
+app.add_handler(
+    CommandHandler(
+        "stats",
+        stats_command
+    )
+)
     app.add_handler(
         CallbackQueryHandler(
             button
