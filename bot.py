@@ -3591,11 +3591,12 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ""
         )
 
-        await safe_query_answer(
-    query,
-    "City not found.",
-    show_alert=True
-       )
+        if city_id not in CITIES:
+            await safe_query_answer(
+                query,
+                "City not found.",
+                show_alert=True
+            )
             return
 
         city = CITIES[city_id][lang]
