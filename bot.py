@@ -2952,7 +2952,15 @@ def city_keyboard(city_id, lang):
     ])
 
 
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    global START_VISITS
+
+    if update.effective_user:
+        VISITOR_IDS.add(update.effective_user.id)
+
+    START_VISITS += 1
+
     context.user_data["language"] = "en"
 
     await update.message.reply_text(
@@ -2960,6 +2968,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🌐 Choose your language / زمان هەڵبژێرە:",
         reply_markup=language_keyboard(),
     )
+
 
 
 
