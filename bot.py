@@ -1,7 +1,6 @@
 import os
 from telegram.error import BadRequest
 import random
-import psycopg
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -2575,34 +2574,6 @@ async def show_quiz_question(query, context):
     )
 
 
-    
-async def save_visitor(user):
-    database_url = os.environ["DATABASE_URL"]
-
-    async with await psycopg.AsyncConnection.connect(
-        database_url
-    ) as conn:
-        async with conn.cursor() as cur:
-            await cur.execute(
-                """
-                INSERT INTO public.bot_visitors
-                    (telegram_id, full_name, username, start_visits)
-                VALUES (%s, %s, %s, 1)
-                ON CONFLICT (telegram_id)
-                DO UPDATE SET
-                    full_name = EXCLUDED.full_name,
-                    username = EXCLUDED.username,
-                    start_visits =
-                        public.bot_visitors.start_visits + 1,
-                    last_seen = NOW()
-                """,
-                (
-                    user.id,
-                    user.full_name,
-                    user.username,
-                ),
-            )
-
 async def start_quiz(query, context, lang):
     # Choose 15 DIFFERENT questions randomly from the full bank.
     selected_questions = random.sample(QUIZ_QUESTIONS, 15)
@@ -2982,36 +2953,18 @@ def city_keyboard(city_id, lang):
 
 
 
-
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     global START_VISITS
 
-    user = update.effective_user
+    
+    if update.effective_user:
+        user = update.effective_user
 
-    if user:
-        try:
-            await save_visitor(user)
-
-            VISITOR_IDS[user.id] = {
-                "name": user.full_name,
-                "username": user.username or "No username",
-                "id": user.id,
-            }
-
-            START_VISITS += 1
-
-        except Exception:
-            print("Failed to save visitor to database.")
-            import traceback
-            traceback.print_exc()
-
-    context.user_data["language"] = "en"
-
-    await update.effective_message.reply_text(
-        "🌍 Kurdistan Geography\n\n"
-        "🌐 Choose your language / زمان هەڵبژێرە:",
-        reply_markup=language_keyboard(),
-    )
+        VISITOR_IDS[user.id] = {
+            "name": user.full_name,
+            "username": user.username or "No username",
+            "id": user.id,
+        }
 
 
     START_VISITS += 1
@@ -4035,7 +3988,6 @@ async def handle_shared_location(
     )
 
 
-
 async def stats_command(
     update: Update,
     context: ContextTypes.DEFAULT_TYPE,
@@ -4049,85 +4001,46 @@ async def stats_command(
         )
         return
 
-    try:
-        database_url = os.environ["DATABASE_URL"]
+    total_users = len(VISITOR_IDS)
 
-        async with await psycopg.AsyncConnection.connect(
-            database_url
-        ) as conn:
-            async with conn.cursor() as cur:
-                await cur.execute(
-                    """
-                    SELECT
-                        telegram_id,
-                        full_name,
-                        username,
-                        start_visits,
-                        first_seen,
-                        last_seen
-                    FROM public.bot_visitors
-                    ORDER BY last_seen DESC
-                    """
-                )
-                visitors = await cur.fetchall()
+    report = (
+        "🔐 KURDISTAN GEO INTELLIGENCE\n"
+        "━━━━━━━━━━━━━━━━━━━━\n"
+        "📊 PRIVATE ANALYTICS REPORT\n\n"
+        f"👥 Unique visitors: {total_users}\n"
+        f"🚀 Total /start visits: {START_VISITS}\n\n"
+        "👤 VISITOR DIRECTORY\n"
+        "━━━━━━━━━━━━━━━━━━━━\n"
+    )
 
-                await cur.execute(
-                    """
-                    SELECT COALESCE(SUM(start_visits), 0)
-                    FROM public.bot_visitors
-                    """
-                )
-                total_starts = (await cur.fetchone())[0]
+    if not VISITOR_IDS:
+        report += "\nNo visitors recorded yet."
+    else:
+        for number, user in enumerate(
+            VISITOR_IDS.values(), start=1
+        ):
+            report += (
+                f"\n#{number:03d} {user['name']}\n"
+                f"   Username: @{user['username']}\n"
+                f"   Telegram ID: {user['id']}\n"
+            )
 
-        report = (
-            "🔐 KURDISTAN GEO INTELLIGENCE\n"
-            "━━━━━━━━━━━━━━━━━━━━\n"
-            "📊 PRIVATE ANALYTICS REPORT\n\n"
-            f"👥 Unique visitors: {len(visitors)}\n"
-            f"🚀 Total /start visits: {total_starts}\n\n"
-            "👤 VISITOR DIRECTORY\n"
-            "━━━━━━━━━━━━━━━━━━━━\n"
-        )
+    # Telegram messages have a length limit.
+    # Split large reports into safe-sized messages.
+    chunks = []
+    current_chunk = ""
 
-        if not visitors:
-            report += "\nNo visitors recorded yet."
-        else:
-            for number, visitor in enumerate(visitors, start=1):
-                telegram_id, name, username, visits, first_seen, last_seen = visitor
-
-                report += (
-                    f"\n#{number:03d} {name}\n"
-                    f"   Username: @{username or 'No username'}\n"
-                    f"   Telegram ID: {telegram_id}\n"
-                    f"   /start visits: {visits}\n"
-                    f"   First seen: {first_seen:%Y-%m-%d %H:%M UTC}\n"
-                    f"   Last seen: {last_seen:%Y-%m-%d %H:%M UTC}\n"
-                )
-
-        chunks = []
-        current_chunk = ""
-
-        for line in report.splitlines(keepends=True):
-            if len(current_chunk) + len(line) > 3500:
-                chunks.append(current_chunk)
-                current_chunk = ""
-            current_chunk += line
-
-        if current_chunk:
+    for line in report.splitlines(keepends=True):
+        if len(current_chunk) + len(line) > 3500:
             chunks.append(current_chunk)
+            current_chunk = ""
+        current_chunk += line
 
-        for chunk in chunks:
-            await update.effective_message.reply_text(chunk)
+    if current_chunk:
+        chunks.append(current_chunk)
 
-    except Exception:
-        print("Failed to load statistics from database.")
-        import traceback
-        traceback.print_exc()
-
-        await update.effective_message.reply_text(
-            "⚠️ Could not load statistics. Please check the Render logs."
-        )
-
+    for chunk in chunks:
+        await update.effective_message.reply_text(chunk)
 
 
 def main():
