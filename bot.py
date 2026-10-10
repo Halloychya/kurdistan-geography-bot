@@ -2594,10 +2594,17 @@ def language_keyboard():
     ])
 
 
+
 def main_keyboard(lang):
     t = TEXT[lang]
 
     quiz_name = "🎯 Geography Quiz" if lang == "en" else "🎯 تاقیکردنەوەی جوگرافیا"
+
+    nearby_name = (
+        "📍 Nearby Places"
+        if lang == "en"
+        else "📍 شوێنە نزیکەکان"
+    )
 
     return InlineKeyboardMarkup([
         [
@@ -2618,7 +2625,6 @@ def main_keyboard(lang):
                 callback_data="quiz_menu"
             )
         ],
-        
         [
             InlineKeyboardButton(
                 t["search"],
@@ -2626,9 +2632,16 @@ def main_keyboard(lang):
             )
         ],
         [
+            InlineKeyboardButton(
+                nearby_name,
+                callback_data="nearby_places"
+            )
+        ],
+        [
             InlineKeyboardButton(t["language"], callback_data="language"),
         ],
     ])
+
 def rivers_keyboard(lang):
     rivers = {
         "en": [
