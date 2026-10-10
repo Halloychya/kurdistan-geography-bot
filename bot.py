@@ -4,8 +4,14 @@ import random
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-
+from telegram import (
+    Update,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    KeyboardButton,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+)
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -859,6 +865,25 @@ CITIES = {
         },
     },
 }
+
+# Coordinates used by the Nearby Places Finder
+NEARBY_PLACES = [
+    {
+        "name_en": "Erbil",
+        "name_ku": "هەولێر",
+        "lat": 36.1911,
+        "lon": 44.0092,
+        "map": "https://www.google.com/maps/search/?api=1&query=Erbil+Iraq",
+    },
+    {
+        "name_en": "Sulaymaniyah",
+        "name_ku": "سلێمانی",
+        "lat": 35.5613,
+        "lon": 45.4309,
+        "map": "https://www.google.com/maps/search/?api=1&query=Sulaymaniyah+Iraq",
+    },
+]
+
 LOCATIONS = {
 
     "erbil_citadel": {
@@ -2948,6 +2973,36 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # SEARCH FOR A PLACE
     # =========================
 
+ 
+    if data == "nearby_places":
+        await safe_query_answer(query)
+
+        location_text = (
+            "📍 Share your location to find the nearest places in Kurdistan."
+            if lang == "en"
+            else
+            "📍 بۆ دۆزینەوەی شوێنە نزیکەکان لە کوردستان، شوێنی خۆت هاوبەش بکە."
+        )
+
+        location_button = (
+            "📍 Share my location"
+            if lang == "en"
+            else
+            "📍 شوێنی خۆم هاوبەش بکەم"
+        )
+
+        location_keyboard = ReplyKeyboardMarkup(
+            [[KeyboardButton(location_button, request_location=True)]],
+            resize_keyboard=True,
+            one_time_keyboard=True,
+        )
+
+        await query.message.reply_text(
+            location_text,
+            reply_markup=location_keyboard,
+        )
+        return
+
     if data == "search_place":
         await safe_query_answer(query)
 
@@ -3763,8 +3818,14 @@ async def search_place_message(
         ],
         [
             InlineKeyboardButton(
-                again_label,
+                t["search"],
                 callback_data="search_place"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "📍 Nearby Places" if lang == "en" else "📍 شوێنە نزیکەکان",
+                callback_data="nearby_places"
             )
         ],
         [
@@ -3818,6 +3879,82 @@ def run_health_server():
 # MAIN
 # =========================
 
+import math
+
+
+def calculate_distance(lat1, lon1, lat2, lon2):
+    earth_radius_km = 6371
+
+    lat1 = math.radians(lat1)
+    lon1 = math.radians(lon1)
+    lat2 = math.radians(lat2)
+    lon2 = math.radians(lon2)
+
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(lat1)
+        * math.cos(lat2)
+        * math.sin(dlon / 2) ** 2
+    )
+
+    return earth_radius_km * 2 * math.atan2(
+        math.sqrt(a),
+        math.sqrt(1 - a),
+    )
+
+async def handle_shared_location(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE,
+):
+    if not update.message or not update.message.location:
+        return
+
+    user_location = update.message.location
+    lang = context.user_data.get("language", "en")
+
+    nearest_places = []
+
+    for place in NEARBY_PLACES:
+        distance = calculate_distance(
+            user_location.latitude,
+            user_location.longitude,
+            place["lat"],
+            place["lon"],
+        )
+
+        nearest_places.append((distance, place))
+
+    nearest_places.sort(key=lambda item: item[0])
+
+    if lang == "ku":
+        response = "📍 شوێنە نزیکەکان بەپێی دووری:\n\n"
+    else:
+        response = "📍 Nearest cities by distance:\n\n"
+
+    for distance, place in nearest_places:
+        name = place["name_ku"] if lang == "ku" else place["name_en"]
+
+        response += (
+            f"📌 {name}\n"
+            f"📏 {distance:.1f} km\n"
+            f"🗺️ {place['map']}\n\n"
+        )
+
+    response += (
+        "تێبینی: دوورییەکان نزیکەیین."
+        if lang == "ku"
+        else "Note: Distances are approximate straight-line distances."
+    )
+
+    await update.message.reply_text(
+        response,
+        reply_markup=ReplyKeyboardRemove(),
+        disable_web_page_preview=True,
+    )
+
 def main():
 
     health_thread = threading.Thread(
@@ -3848,6 +3985,14 @@ def main():
             search_place_message
         )
     )
+    
+    app.add_handler(
+        MessageHandler(
+            filters.LOCATION,
+            handle_shared_location
+        )
+    )
+
     print(
         "Kurdistan Geography Bot is running..."
     )
