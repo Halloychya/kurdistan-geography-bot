@@ -21,7 +21,7 @@ from telegram.ext import (
     filters,
 )
 OWNER_ID =1291521545
-VISITOR_IDS = set()
+VISITOR_IDS = {}
 START_VISITS = 0
 TOKEN = os.environ["BOT_TOKEN"]
 
@@ -2956,8 +2956,16 @@ def city_keyboard(city_id, lang):
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     global START_VISITS
 
+    
     if update.effective_user:
-        VISITOR_IDS.add(update.effective_user.id)
+        user = update.effective_user
+
+        VISITOR_IDS[user.id] = {
+            "name": user.full_name,
+            "username": user.username or "No username",
+            "id": user.id,
+        }
+
 
     START_VISITS += 1
 
@@ -3979,26 +3987,61 @@ async def handle_shared_location(
         disable_web_page_preview=True,
     )
 
+
 async def stats_command(
     update: Update,
     context: ContextTypes.DEFAULT_TYPE,
 ):
-    if not update.effective_user:
+    if not update.effective_user or not update.effective_message:
         return
 
     if update.effective_user.id != OWNER_ID:
         await update.effective_message.reply_text(
-            "⛔ You are not authorized to view these statistics."
+            "⛔ Access denied. Owner only."
         )
         return
 
     total_users = len(VISITOR_IDS)
 
-    await update.effective_message.reply_text(
-        "🔒 PRIVATE BOT STATISTICS\n\n"
+    report = (
+        "🔐 KURDISTAN GEO INTELLIGENCE\n"
+        "━━━━━━━━━━━━━━━━━━━━\n"
+        "📊 PRIVATE ANALYTICS REPORT\n\n"
         f"👥 Unique visitors: {total_users}\n"
-        f"🚀 Total /start visits: {START_VISITS}"
+        f"🚀 Total /start visits: {START_VISITS}\n\n"
+        "👤 VISITOR DIRECTORY\n"
+        "━━━━━━━━━━━━━━━━━━━━\n"
     )
+
+    if not VISITOR_IDS:
+        report += "\nNo visitors recorded yet."
+    else:
+        for number, user in enumerate(
+            VISITOR_IDS.values(), start=1
+        ):
+            report += (
+                f"\n#{number:03d} {user['name']}\n"
+                f"   Username: @{user['username']}\n"
+                f"   Telegram ID: {user['id']}\n"
+            )
+
+    # Telegram messages have a length limit.
+    # Split large reports into safe-sized messages.
+    chunks = []
+    current_chunk = ""
+
+    for line in report.splitlines(keepends=True):
+        if len(current_chunk) + len(line) > 3500:
+            chunks.append(current_chunk)
+            current_chunk = ""
+        current_chunk += line
+
+    if current_chunk:
+        chunks.append(current_chunk)
+
+    for chunk in chunks:
+        await update.effective_message.reply_text(chunk)
+
 
 def main():
 
