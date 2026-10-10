@@ -4017,12 +4017,14 @@ def main():
             start
         )
     )
-app.add_handler(
-    CommandHandler(
-        "stats",
-        stats_command
+
+    app.add_handler(
+        CommandHandler(
+            "stats",
+            stats_command
+        )
     )
-)
+
     app.add_handler(
         CallbackQueryHandler(
             button
