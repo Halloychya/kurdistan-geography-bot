@@ -1,6 +1,7 @@
 import os
 from telegram.error import BadRequest
 import random
+import psycopg
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
